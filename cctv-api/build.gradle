@@ -38,4 +38,6 @@ dependencies {
     compile("com.mysema.querydsl:querydsl-apt:3.6.3:jpa")
     compile("mysql:mysql-connector-java:5.1.31")
     compile("org.flywaydb:flyway-core:3.2.1")
+
+    compile('org.modelmapper:modelmapper:0.7.5')
 }
