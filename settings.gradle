@@ -1,2 +1,4 @@
-rootProject.name = 'socialcoding'
+rootProject.name = 'cctv-server'
 
+include 'cctv-api'
+include 'cctv-admin'
