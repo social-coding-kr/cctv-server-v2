@@ -30,9 +30,7 @@ jar {
 dependencies {
     testCompile('org.springframework.boot:spring-boot-starter-test')
 
-    compile project(":cctv-api")
-
-    compile('org.springframework.boot:spring-boot-starter')
+    compile project(":cctv-core")
 
     compile("org.springframework.boot:spring-boot-starter-web")
     compile("org.springframework.boot:spring-boot-starter-thymeleaf")
