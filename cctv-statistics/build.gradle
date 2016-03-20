@@ -17,7 +17,7 @@ idea {
 }
 
 jar {
-    baseName = 'cctv-api'
+    baseName = 'cctv-statistics'
     version =  '0.0.1-SNAPSHOT'
 
     manifest {
