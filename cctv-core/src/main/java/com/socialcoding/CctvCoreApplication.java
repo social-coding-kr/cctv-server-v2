@@ -9,4 +9,5 @@ public class CctvCoreApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(CctvCoreApplication.class, args);
 	}
+
 }

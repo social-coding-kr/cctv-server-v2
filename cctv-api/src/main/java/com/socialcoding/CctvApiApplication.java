@@ -11,4 +11,5 @@ public class CctvApiApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(CctvApiApplication.class, args);
 	}
+
 }
