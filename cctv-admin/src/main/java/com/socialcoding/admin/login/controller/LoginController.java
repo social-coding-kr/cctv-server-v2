@@ -1,4 +1,4 @@
-package com.socialcoding.admin.dashboard.controller;
+package com.socialcoding.admin.login.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
