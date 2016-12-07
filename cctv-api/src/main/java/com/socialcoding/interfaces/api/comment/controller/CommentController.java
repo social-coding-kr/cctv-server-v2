@@ -1,4 +1,4 @@
-package com.socialcoding.api.comment.controller;
+package com.socialcoding.interfaces.api.comment.controller;
 
 import org.springframework.web.bind.annotation.RestController;
 

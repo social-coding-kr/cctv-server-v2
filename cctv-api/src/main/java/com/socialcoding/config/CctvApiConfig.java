@@ -1,6 +1,6 @@
-package com.socialcoding.configuration;
+package com.socialcoding.config;
 
-import com.socialcoding.api.CctvApis;
+import com.socialcoding.interfaces.api.CctvApis;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
