@@ -1,4 +1,4 @@
-package com.socialcoding.domain.base;
+package com.socialcoding.domain.base.entity;
 
 import lombok.Getter;
 import lombok.Setter;

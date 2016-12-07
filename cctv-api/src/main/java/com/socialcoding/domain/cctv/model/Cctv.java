@@ -1,6 +1,6 @@
 package com.socialcoding.domain.cctv.model;
 
-import com.socialcoding.domain.base.AbstractAuditingEntity;
+import com.socialcoding.domain.base.entity.AbstractAuditingEntity;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -25,7 +25,7 @@ public abstract class Cctv extends AbstractAuditingEntity {
 		@AttributeOverride(name = "latitude", column = @Column(name = "latitude")),
 		@AttributeOverride(name = "longitude", column = @Column(name = "longitude"))
 	})
-	private Geolocation geolocation;
+	private Geolocation location;
 
     @Column(name = "purpose")
     private String purpose;
