@@ -1,9 +1,11 @@
 package com.socialcoding.config.oauth;
 
+import lombok.Getter;
 import org.springframework.boot.autoconfigure.security.oauth2.resource.ResourceServerProperties;
 import org.springframework.boot.context.properties.NestedConfigurationProperty;
 import org.springframework.security.oauth2.client.token.grant.code.AuthorizationCodeResourceDetails;
 
+@Getter
 public class ClientResources {
 
 	@NestedConfigurationProperty
@@ -11,13 +13,5 @@ public class ClientResources {
 
 	@NestedConfigurationProperty
 	private ResourceServerProperties resource = new ResourceServerProperties();
-
-	public AuthorizationCodeResourceDetails getClient() {
-		return client;
-	}
-
-	public ResourceServerProperties getResource() {
-		return resource;
-	}
 
 }

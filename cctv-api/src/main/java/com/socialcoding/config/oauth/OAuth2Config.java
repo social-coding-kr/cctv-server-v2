@@ -7,12 +7,12 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.oauth2.client.filter.OAuth2ClientContextFilter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableOAuth2Client;
 
-@EnableOAuth2Client
 @Configuration
+@EnableOAuth2Client
 public class OAuth2Config {
 
 	@Bean
-	public FilterRegistrationBean oauth2ClientFilterRegistration(OAuth2ClientContextFilter filter) {
+	public FilterRegistrationBean oAuth2ClientFilterRegistration(OAuth2ClientContextFilter filter) {
 		FilterRegistrationBean registrationBean = new FilterRegistrationBean();
 		registrationBean.setFilter(filter);
 		registrationBean.setOrder(-100);
