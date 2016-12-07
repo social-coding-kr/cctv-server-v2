@@ -1,4 +1,4 @@
-package com.socialcoding.config;
+package com.socialcoding.config.oauth;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
@@ -20,14 +20,8 @@ public class OAuth2Config {
 	}
 
 	@Bean
-	@ConfigurationProperties("github")
-	public ClientResources github() {
-		return new ClientResources();
-	}
-
-	@Bean
 	@ConfigurationProperties("facebook")
-	public ClientResources facebook() {
+	public ClientResources facebookClientResources() {
 		return new ClientResources();
 	}
 

@@ -1,4 +1,4 @@
-package com.socialcoding.config;
+package com.socialcoding.config.oauth;
 
 import org.springframework.boot.autoconfigure.security.oauth2.resource.ResourceServerProperties;
 import org.springframework.boot.context.properties.NestedConfigurationProperty;

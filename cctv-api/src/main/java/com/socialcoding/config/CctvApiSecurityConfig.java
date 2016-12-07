@@ -1,5 +1,6 @@
 package com.socialcoding.config;
 
+import com.socialcoding.config.oauth.ClientResources;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.security.oauth2.resource.UserInfoTokenServices;
@@ -25,8 +26,8 @@ public class CctvApiSecurityConfig extends WebSecurityConfigurerAdapter {
 	private OAuth2ClientContext oAuth2ClientContext;
 
 	@Autowired
-	@Qualifier("facebook")
-	private ClientResources facebook;
+	@Qualifier("facebookClientResources")
+	private ClientResources facebookClientResources;
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
@@ -48,7 +49,7 @@ public class CctvApiSecurityConfig extends WebSecurityConfigurerAdapter {
 	private Filter ssoFilter() {
 		CompositeFilter filter = new CompositeFilter();
 		List<Filter> filters = new ArrayList<>();
-		filters.add(ssoFilter(facebook, "/login/facebook"));
+		filters.add(ssoFilter(facebookClientResources, "/login/facebook"));
 		filter.setFilters(filters);
 		return filter;
 	}
