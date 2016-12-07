@@ -1,6 +1,3 @@
 rootProject.name = 'cctv-server'
 
-include 'cctv-core'
 include 'cctv-api'
-include 'cctv-admin'
-include 'cctv-statistics'

@@ -1,4 +1,4 @@
-package com.socialcoding.api.cctv.controller;
+package com.socialcoding.interfaces.api.cctv.controller;
 
 import org.springframework.web.bind.annotation.RestController;
 

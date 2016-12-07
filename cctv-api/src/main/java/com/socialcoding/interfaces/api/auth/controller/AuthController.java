@@ -1,4 +1,4 @@
-package com.socialcoding.api.auth.controller;
+package com.socialcoding.interfaces.api.auth.controller;
 
 import org.springframework.web.bind.annotation.RestController;
 
