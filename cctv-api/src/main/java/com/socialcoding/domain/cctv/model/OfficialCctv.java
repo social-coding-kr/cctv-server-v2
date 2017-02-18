@@ -11,21 +11,12 @@ import javax.persistence.Table;
 @Getter
 @Setter
 @Entity
-@Table(name = "public_cctvs")
-@DiscriminatorValue(CctvCategory.Names.PUBLIC)
-public class PublicCctv extends Cctv {
+@Table(name = "official_cctvs")
+@DiscriminatorValue(CctvCategory.Names.OFFICIAL)
+public class OfficialCctv extends Cctv {
 
-	@Column(name = "cctvName", nullable = false)
-	private String cctvName;
-
-	@Column(name = "address")
-	private String address;
-
-	@Column(name = "borough")
-	private String borough;
-
-	@Column(name = "dong")
-	private String dong;
+	@Column(name = "purpose")
+	private String purpose;
 
 	@Column(name = "\"range\"")
 	private String range;

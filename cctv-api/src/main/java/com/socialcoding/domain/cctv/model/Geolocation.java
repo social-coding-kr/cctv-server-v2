@@ -9,7 +9,6 @@ import java.math.BigDecimal;
 @Getter
 @Setter
 @ToString
-@NoArgsConstructor
 @Embeddable
 public class Geolocation {
 

@@ -2,12 +2,18 @@ package com.socialcoding.domain.cctv.model;
 
 public enum CctvCategory {
 
-    PUBLIC,
-    PRIVATE;
+    OFFICIAL(Names.OFFICIAL),
+    USER(Names.USER);
+
+	private String name;
+
+	CctvCategory(String name) {
+		this.name = name;
+	}
 
 	public static class Names {
-    	public static final String PUBLIC = "PUBLIC";
-    	public static final String PRIVATE = "PRIVATE";
+    	public static final String OFFICIAL = "OFFICIAL";
+    	public static final String USER = "USER";
 	}
 
 }

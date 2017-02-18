@@ -17,21 +17,19 @@ public abstract class Cctv extends AbstractAuditingEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "cctvId", nullable = false)
     private Long id;
 
-	@Embedded
-	@AttributeOverrides({
-		@AttributeOverride(name = "latitude", column = @Column(name = "latitude")),
-		@AttributeOverride(name = "longitude", column = @Column(name = "longitude"))
-	})
-	private Geolocation location;
+	@Column(name = "name", nullable = false)
+	private String name;
 
-    @Column(name = "purpose")
-    private String purpose;
+	@Embedded
+	private Geolocation location;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "category", insertable = false, updatable = false)
     private CctvCategory category;
+
+    @Embedded
+	private Address address;
 
 }

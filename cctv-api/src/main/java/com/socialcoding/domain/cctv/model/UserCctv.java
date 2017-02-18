@@ -11,9 +11,9 @@ import javax.persistence.Table;
 @Getter
 @Setter
 @Entity
-@Table(name = "private_cctvs")
-@DiscriminatorValue(CctvCategory.Names.PRIVATE)
-public class PrivateCctv extends Cctv {
+@Table(name = "user_cctvs")
+@DiscriminatorValue(CctvCategory.Names.USER)
+public class UserCctv extends Cctv {
 
 	@Column(name = "cctvImage")
 	private String cctvImage;
