@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Setter
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-@DiscriminatorColumn(name = "source")
+@DiscriminatorColumn(name = "category")
 //@ToString(exclude = "comments")
 @Table(name = "cctvs")
 public abstract class Cctv extends AbstractAuditingEntity {
@@ -19,17 +19,17 @@ public abstract class Cctv extends AbstractAuditingEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
-	@Column(name = "name", nullable = false)
+	@Column(name = "name", unique = true, nullable = false)
 	private String name;
 
 	@Embedded
 	private Geolocation location;
 
+	@Embedded
+	private Address address;
+
     @Enumerated(EnumType.STRING)
     @Column(name = "category", insertable = false, updatable = false)
     private CctvCategory category;
-
-    @Embedded
-	private Address address;
 
 }

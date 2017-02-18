@@ -1,12 +1,11 @@
 package com.socialcoding.domain.cctv.model;
 
+import com.socialcoding.domain.base.entity.MapConverter;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.Map;
 
 @Getter
 @Setter
@@ -15,22 +14,11 @@ import javax.persistence.Table;
 @DiscriminatorValue(CctvCategory.Names.OFFICIAL)
 public class OfficialCctv extends Cctv {
 
-	@Column(name = "purpose")
-	private String purpose;
+	@Column(name = "data_source")
+	private String dataSource;
 
-	@Column(name = "\"range\"")
-	private String range;
-
-	@Column(name = "department")
-	private String department;
-
-	@Column(name = "pixel")
-	private String pixel;
-
-	@Column(name = "form")
-	private String form;
-
-	@Column(name = "installedAt")
-	private String installedAt;
+	@Column(name = "extraProperties")
+	@Convert(converter = MapConverter.class)
+	private Map<String, String> extraProperties;
 
 }
