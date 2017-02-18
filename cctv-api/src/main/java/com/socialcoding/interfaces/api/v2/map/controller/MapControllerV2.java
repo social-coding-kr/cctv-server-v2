@@ -22,12 +22,12 @@ public class MapControllerV2 {
 	}
 
 	@RequestMapping(value = "/v2/map", method = RequestMethod.GET)
-	public MapDto getCctvs(@Valid MapBoundSearchForm searchForm) {
+	public MapDto map(@Valid MapBoundSearchForm searchForm) {
 		return mapFacadeService.listCctvBetween(searchForm);
 	}
 
 	@RequestMapping(value = "/v2/map/cctvs/counts", method = RequestMethod.GET)
-	public MapCountDto getCctvCounts(@Valid MapBoundSearchForm searchForm) {
+	public MapCountDto countCctvs(@Valid MapBoundSearchForm searchForm) {
 		return mapFacadeService.countCctvBetween(searchForm);
 	}
 
