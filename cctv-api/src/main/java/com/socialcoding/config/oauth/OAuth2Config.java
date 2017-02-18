@@ -3,12 +3,10 @@ package com.socialcoding.config.oauth;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.security.oauth2.client.filter.OAuth2ClientContextFilter;
-import org.springframework.security.oauth2.config.annotation.web.configuration.EnableOAuth2Client;
 
-@Configuration
-@EnableOAuth2Client
+//@Configuration
+//@EnableOAuth2Client
 public class OAuth2Config {
 
 	@Bean

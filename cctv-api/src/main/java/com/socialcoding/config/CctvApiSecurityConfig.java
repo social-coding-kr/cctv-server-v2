@@ -4,7 +4,6 @@ import com.socialcoding.config.oauth.ClientResources;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.security.oauth2.resource.UserInfoTokenServices;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.oauth2.client.OAuth2ClientContext;
@@ -19,7 +18,7 @@ import javax.servlet.Filter;
 import java.util.ArrayList;
 import java.util.List;
 
-@Configuration
+//@Configuration
 public class CctvApiSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
