@@ -1,13 +1,13 @@
 package com.socialcoding.domain.cctv.model;
 
-public enum CctvCategory {
+public enum CctvType {
 
     OFFICIAL(Names.OFFICIAL),
     USER(Names.USER);
 
 	private String name;
 
-	CctvCategory(String name) {
+	CctvType(String name) {
 		this.name = name;
 	}
 

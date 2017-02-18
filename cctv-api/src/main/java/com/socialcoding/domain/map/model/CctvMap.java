@@ -1,14 +1,14 @@
 package com.socialcoding.domain.map.model;
 
-import com.socialcoding.domain.cctv.model.Cctv;
-import com.socialcoding.domain.cctv.model.CctvCategory;
+import com.socialcoding.domain.cctv.entity.CctvEntity;
+import com.socialcoding.domain.cctv.model.CctvType;
 
 import java.util.Collection;
 
 public class CctvMap {
 
-	private Collection<Cctv> cctvs;
-	private CctvCategory category;
+	private Collection<CctvEntity> cctvs;
+	private CctvType category;
 
 	private MapBound bound;
 

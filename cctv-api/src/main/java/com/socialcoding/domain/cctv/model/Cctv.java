@@ -1,35 +1,31 @@
 package com.socialcoding.domain.cctv.model;
 
-import com.socialcoding.domain.base.entity.AbstractAuditingEntity;
+import com.socialcoding.domain.cctv.entity.CctvEntity;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.*;
-
 @Getter
 @Setter
-@Entity
-@Inheritance(strategy = InheritanceType.JOINED)
-@DiscriminatorColumn(name = "category")
-//@ToString(exclude = "comments")
-@Table(name = "cctvs")
-public abstract class Cctv extends AbstractAuditingEntity {
+public abstract class Cctv {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
-	@Column(name = "name", unique = true, nullable = false)
 	private String name;
 
-	@Embedded
 	private Geolocation location;
 
-	@Embedded
 	private Address address;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "category", insertable = false, updatable = false)
-    private CctvCategory category;
+    private CctvType type;
+
+	public static Cctv fromEntity(CctvEntity cctv) {
+		if (CctvType.OFFICIAL == cctv.getType()) {
+			return OfficialCctv.fromEntity(cctv);
+		} else if (CctvType.USER == cctv.getType()) {
+			return UserCctv.fromEntity(cctv);
+		} else {
+			throw new IllegalArgumentException("Not existing type: " + cctv.getType());
+		}
+	}
 
 }

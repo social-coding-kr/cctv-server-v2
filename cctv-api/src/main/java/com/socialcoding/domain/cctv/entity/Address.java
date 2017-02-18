@@ -1,14 +1,19 @@
-package com.socialcoding.domain.cctv.model;
+package com.socialcoding.domain.cctv.entity;
 
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
+
 @Getter
 @Setter
 @ToString
+@Embeddable
 public class Address {
 
+	@Column(name = "address", nullable = false)
 	private String address;
 
 	private String regionLocalGovernment; // 광역지방자치단체

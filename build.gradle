@@ -1,8 +1,9 @@
 ext {
     springBootVersion = '1.4.4.RELEASE'
     reactorVersion = '3.0.4.RELEASE'
+	jacksonVersion = '2.8.6'
 
-    querydslVersion = '3.7.4'
+    querydslVersion = '4.1.4'
 }
 
 subprojects {
