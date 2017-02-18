@@ -1,4 +1,4 @@
 rootProject.name = 'cctv-server'
 
 include 'cctv-api'
-include 'cctv-admin'
+//include 'cctv-admin'
