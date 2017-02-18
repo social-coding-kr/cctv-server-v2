@@ -1,12 +1,11 @@
 package com.socialcoding.domain.cctv.model;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import com.socialcoding.domain.cctv.entity.AddressEntity;
+import lombok.*;
 
 @Getter
-@Setter
 @ToString
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class Address {
 
 	private String address;
@@ -16,5 +15,11 @@ public class Address {
 	private String basicLocalGovernment; // 기초지방자치단체
 
 	private String nonSelfGovernment; // 비자치구역
+
+
+	public static Address fromEntity(AddressEntity entity) {
+		return new Address(entity.getAddress(), entity.getRegionLocalGovernment(),
+			entity.getBasicLocalGovernment(), entity.getNonSelfGovernment());
+	}
 
 }

@@ -1,6 +1,8 @@
 package com.socialcoding.domain.cctv.model;
 
 import com.socialcoding.domain.cctv.entity.CctvEntity;
+import com.socialcoding.domain.cctv.entity.OfficialCctvEntity;
+import com.socialcoding.domain.cctv.entity.UserCctvEntity;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -20,9 +22,9 @@ public abstract class Cctv {
 
 	public static Cctv fromEntity(CctvEntity cctv) {
 		if (CctvType.OFFICIAL == cctv.getType()) {
-			return OfficialCctv.fromEntity(cctv);
+			return OfficialCctv.fromEntity((OfficialCctvEntity) cctv);
 		} else if (CctvType.USER == cctv.getType()) {
-			return UserCctv.fromEntity(cctv);
+			return UserCctv.fromEntity((UserCctvEntity) cctv);
 		} else {
 			throw new IllegalArgumentException("Not existing type: " + cctv.getType());
 		}

@@ -20,7 +20,12 @@ public class CctvOverviewDto {
 	private CctvType source;
 
 	public static CctvOverviewDto from(Cctv cctv) {
-		return null;
+		CctvOverviewDto dto = new CctvOverviewDto();
+		dto.setCctvId(cctv.getId());
+		dto.setLatitude(cctv.getLocation().getLatitude());
+		dto.setLongitude(cctv.getLocation().getLongitude());
+		dto.setSource(cctv.getType());
+		return dto;
 	}
 
 }

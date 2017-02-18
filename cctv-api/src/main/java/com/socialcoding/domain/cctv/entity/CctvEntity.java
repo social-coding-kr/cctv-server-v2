@@ -23,10 +23,10 @@ public abstract class CctvEntity extends AbstractAuditingEntity {
 	private String name;
 
 	@Embedded
-	private Geolocation location;
+	private GeolocationEntity location;
 
 	@Embedded
-	private Address address;
+	private AddressEntity address;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "type", insertable = false, updatable = false)

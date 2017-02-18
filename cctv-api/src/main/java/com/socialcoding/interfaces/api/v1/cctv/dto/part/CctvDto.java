@@ -2,6 +2,8 @@ package com.socialcoding.interfaces.api.v1.cctv.dto.part;
 
 import com.socialcoding.domain.cctv.model.Cctv;
 import com.socialcoding.domain.cctv.model.CctvType;
+import com.socialcoding.domain.cctv.model.OfficialCctv;
+import com.socialcoding.domain.cctv.model.UserCctv;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,9 +17,9 @@ public class CctvDto {
 
 	public static CctvDto from(Cctv cctv) {
 		if (CctvType.OFFICIAL == cctv.getType()) {
-			return OfficialCctvDto.from(cctv);
+			return OfficialCctvDto.from((OfficialCctv) cctv);
 		} else if (CctvType.USER == cctv.getType()) {
-			return UserCctvDto.from(cctv);
+			return UserCctvDto.from((UserCctv) cctv);
 		} else {
 			throw new IllegalArgumentException("Not exist type: " + cctv.getType());
 		}

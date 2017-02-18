@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.HashMap;
 import java.util.Map;
 
 @Getter
@@ -18,8 +19,8 @@ public class OfficialCctvEntity extends CctvEntity {
 	@Column(name = "data_source")
 	private String dataSource;
 
-	@Column(name = "extraProperties")
+	@Column(name = "extra_properties")
 	@Convert(converter = MapConverter.class)
-	private Map<String, String> extraProperties;
+	private Map<String, String> extraProperties = new HashMap<>();
 
 }

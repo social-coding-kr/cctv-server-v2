@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.HashMap;
 import java.util.Map;
 
 @Getter
@@ -15,14 +16,14 @@ import java.util.Map;
 @DiscriminatorValue(CctvType.Names.USER)
 public class UserCctvEntity extends CctvEntity {
 
-	@Column(name = "cctvImage")
+	@Column(name = "cctv_image")
 	private String cctvImage;
 
-	@Column(name = "noticeImage")
+	@Column(name = "notice_image")
 	private String noticeImage;
 
-	@Column(name = "extraProperties")
+	@Column(name = "extra_properties")
 	@Convert(converter = MapConverter.class)
-	private Map<String, String> extraProperties;
+	private Map<String, String> extraProperties = new HashMap<>();
 
 }

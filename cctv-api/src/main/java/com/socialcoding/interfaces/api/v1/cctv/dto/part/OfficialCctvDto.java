@@ -1,6 +1,6 @@
 package com.socialcoding.interfaces.api.v1.cctv.dto.part;
 
-import com.socialcoding.domain.cctv.model.Cctv;
+import com.socialcoding.domain.cctv.model.OfficialCctv;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -24,8 +24,18 @@ public class OfficialCctvDto extends CctvDto {
 
 	private String installedAt;
 
-	public static OfficialCctvDto from(Cctv cctv) {
-		return null;
+	public static OfficialCctvDto from(OfficialCctv cctv) {
+		OfficialCctvDto dto = new OfficialCctvDto();
+		dto.setCctvId(cctv.getId());
+		dto.setPurpose(cctv.getExtraProperties().get("purpose"));
+		dto.setSource(cctv.getType());
+		dto.setAddress(cctv.getAddress().getAddress());
+		dto.setBorough(cctv.getAddress().getRegionLocalGovernment());
+		dto.setDong(cctv.getExtraProperties().get("range"));
+		dto.setDepartment(cctv.getExtraProperties().get("department"));
+		dto.setPixel(cctv.getExtraProperties().get("form"));
+		dto.setInstalledAt(cctv.getExtraProperties().get("installedAt"));
+		return dto;
 	}
 
 }

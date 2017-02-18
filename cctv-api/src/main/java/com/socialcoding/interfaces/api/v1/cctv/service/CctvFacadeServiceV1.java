@@ -17,6 +17,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
+@Deprecated
 public class CctvFacadeServiceV1 {
 
 	private final CctvFacadeService cctvFacadeService;

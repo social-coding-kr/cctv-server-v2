@@ -10,7 +10,7 @@ import java.math.BigDecimal;
 @Setter
 @ToString
 @Embeddable
-public class Geolocation {
+public class GeolocationEntity {
 
 	@Column(name = "latitude", nullable = false)
     private BigDecimal latitude;
