@@ -16,6 +16,8 @@ public class CctvSearchConditions implements SearchConditions {
 
 	private MapBound mapBound;
 
+	private CctvType type;
+
 	@Override
 	public Predicate toPredicate() {
 //		lower => searchForm.getSouth() <- latitude, searchForm.getWest() <- longitude);
@@ -26,6 +28,8 @@ public class CctvSearchConditions implements SearchConditions {
 			.ifPresent(bound -> booleanBuilder
 					.and(qCctvEntity.location.latitude.between(bound.getSouth(), bound.getNorth()))
 					.and(qCctvEntity.location.longitude.between(bound.getWest(), bound.getEast())));
+		Optional.ofNullable(type)
+			.ifPresent(qCctvEntity.type::eq);
 		return booleanBuilder;
 	}
 

@@ -3,10 +3,12 @@ package com.socialcoding.domain.cctv.service;
 import com.socialcoding.domain.cctv.entity.CctvEntity;
 import com.socialcoding.domain.cctv.model.Cctv;
 import com.socialcoding.domain.cctv.model.CctvSearchConditions;
+import com.socialcoding.domain.map.model.CctvMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
@@ -32,6 +34,13 @@ public class CctvFacadeService {
 		return cctvQueryService.findAll(conditions.toPredicate()).stream()
 			.map(Cctv::fromEntity)
 			.collect(Collectors.toList());
+	}
+
+	public CctvMap getCctvMap(CctvSearchConditions conditions) {
+		Objects.requireNonNull(conditions.getMapBound());
+
+		List<Cctv> cctvs = listCctvs(conditions);
+		return CctvMap.of(cctvs, conditions.getType(), conditions.getMapBound());
 	}
 
 	public long countCctvs(CctvSearchConditions conditions) {
