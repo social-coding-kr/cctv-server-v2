@@ -48,6 +48,12 @@ public class CctvFacadeService {
 		return Cctv.fromEntity(cctv);
 	}
 
+	public Cctv getCctv(String name) {
+		CctvEntity cctv = cctvQueryService.findByName(name)
+			.orElseThrow(() -> new IllegalArgumentException("Fail to find cctv: " + name));
+		return Cctv.fromEntity(cctv);
+	}
+
 	public List<Cctv> listCctvs(CctvSearchConditions conditions) {
 		return cctvQueryService.findAll(conditions.toPredicate()).stream()
 			.map(Cctv::fromEntity)
@@ -80,5 +86,4 @@ public class CctvFacadeService {
 		CctvEntity saved = cctvCommandService.insert(cctv);
 		return Cctv.fromEntity(saved);
 	}
-
 }

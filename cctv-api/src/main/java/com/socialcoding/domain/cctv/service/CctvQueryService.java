@@ -24,6 +24,10 @@ public class CctvQueryService {
 		return cctvRepository.findOneById(id);
 	}
 
+	public Optional<CctvEntity> findByName(String name) {
+		return cctvRepository.findOneByName(name);
+	}
+
 	public Collection<CctvEntity> findAll(Predicate predicate) {
 		return Lists.newArrayList(cctvRepository.findAll(predicate));
 	}

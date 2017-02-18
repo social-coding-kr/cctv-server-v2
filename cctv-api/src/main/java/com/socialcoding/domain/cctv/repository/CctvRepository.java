@@ -11,4 +11,6 @@ public interface CctvRepository extends CctvServerRepository<CctvEntity, Long> {
 
 	Optional<CctvEntity> findOneById(Long id);
 
+	Optional<CctvEntity> findOneByName(String name);
+
 }
