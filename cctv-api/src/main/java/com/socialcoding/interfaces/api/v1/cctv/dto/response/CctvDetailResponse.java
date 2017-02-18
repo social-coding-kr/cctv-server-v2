@@ -1,7 +1,7 @@
 package com.socialcoding.interfaces.api.v1.cctv.dto.response;
 
 import com.socialcoding.interfaces.api.base.ResponseStatus;
-import com.socialcoding.interfaces.api.v1.cctv.dto.part.CctvDto;
+import com.socialcoding.interfaces.api.v1.cctv.dto.CctvDto;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

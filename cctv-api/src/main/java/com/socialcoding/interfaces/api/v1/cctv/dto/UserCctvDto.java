@@ -1,4 +1,4 @@
-package com.socialcoding.interfaces.api.v1.cctv.dto.part;
+package com.socialcoding.interfaces.api.v1.cctv.dto;
 
 import com.socialcoding.domain.cctv.model.UserCctv;
 import lombok.Getter;
