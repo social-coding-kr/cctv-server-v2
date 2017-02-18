@@ -3,7 +3,7 @@ package com.socialcoding.interfaces.api.v2.map.service;
 import com.socialcoding.domain.cctv.model.CctvSearchConditions;
 import com.socialcoding.domain.cctv.service.CctvFacadeService;
 import com.socialcoding.interfaces.api.v2.map.dto.MapBoundSearchForm;
-import com.socialcoding.interfaces.api.v2.map.dto.MapCctvCountDto;
+import com.socialcoding.interfaces.api.v2.map.dto.MapCountDto;
 import com.socialcoding.interfaces.api.v2.map.dto.MapCctvDto;
 import com.socialcoding.interfaces.api.v2.map.dto.MapDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,11 +32,11 @@ public class MapFacadeServiceV2 {
 		return MapDto.with(cctvs);
 	}
 
-	public MapCctvCountDto countCctvBetween(MapBoundSearchForm searchForm) {
+	public MapCountDto countCctvBetween(MapBoundSearchForm searchForm) {
 		CctvSearchConditions conditions = new CctvSearchConditions();
 		conditions.setMapBound(searchForm.toMapBound());
 		return Optional.of(cctvFacadeService.countCctvs(conditions))
-			.map(MapCctvCountDto::with)
+			.map(MapCountDto::with)
 			.orElseThrow(() -> new IllegalArgumentException("Fail to get cctv: " + searchForm));
 	}
 }

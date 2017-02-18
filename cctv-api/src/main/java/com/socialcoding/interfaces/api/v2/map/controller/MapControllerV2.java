@@ -1,7 +1,7 @@
 package com.socialcoding.interfaces.api.v2.map.controller;
 
 import com.socialcoding.interfaces.api.v2.map.dto.MapBoundSearchForm;
-import com.socialcoding.interfaces.api.v2.map.dto.MapCctvCountDto;
+import com.socialcoding.interfaces.api.v2.map.dto.MapCountDto;
 import com.socialcoding.interfaces.api.v2.map.dto.MapDto;
 import com.socialcoding.interfaces.api.v2.map.service.MapFacadeServiceV2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +27,7 @@ public class MapControllerV2 {
 	}
 
 	@RequestMapping(value = "/v2/map/cctvs/counts", method = RequestMethod.GET)
-	public MapCctvCountDto getCctvCounts(@Valid MapBoundSearchForm searchForm) {
+	public MapCountDto getCctvCounts(@Valid MapBoundSearchForm searchForm) {
 		return mapFacadeService.countCctvBetween(searchForm);
 	}
 

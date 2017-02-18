@@ -4,12 +4,12 @@ import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-public class MapCctvCountDto {
+public class MapCountDto {
 
 	private Long count;
 
-	public static MapCctvCountDto with(Long count) {
-		return new MapCctvCountDto(count);
+	public static MapCountDto with(Long count) {
+		return new MapCountDto(count);
 	}
 
 }
