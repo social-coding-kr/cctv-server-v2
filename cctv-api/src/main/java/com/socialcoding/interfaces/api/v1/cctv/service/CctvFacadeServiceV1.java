@@ -6,11 +6,14 @@ import com.socialcoding.domain.cctv.service.CctvFacadeService;
 import com.socialcoding.interfaces.api.v1.cctv.dto.part.CctvDto;
 import com.socialcoding.interfaces.api.v1.cctv.dto.part.CctvOverviewDto;
 import com.socialcoding.interfaces.api.v1.cctv.dto.request.CctvMapSearchForm;
+import com.socialcoding.interfaces.api.v1.cctv.dto.request.CctvRegistrationForm;
 import com.socialcoding.interfaces.api.v1.cctv.dto.response.CctvDetailResponse;
 import com.socialcoding.interfaces.api.v1.cctv.dto.response.CctvMapCountResponse;
 import com.socialcoding.interfaces.api.v1.cctv.dto.response.CctvMapResponse;
+import com.socialcoding.interfaces.api.v1.cctv.dto.response.CctvRegisterResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Optional;
@@ -37,10 +40,10 @@ public class CctvFacadeServiceV1 {
 	public CctvMapResponse listCctvBetween(CctvMapSearchForm searchForm) {
 		CctvSearchConditions conditions = new CctvSearchConditions();
 		conditions.setMapBound(searchForm.toMapBound());
-		List<Cctv> cctvs = cctvFacadeService.listCctvs(conditions);
-		return CctvMapResponse.success(cctvs.stream()
+		List<CctvOverviewDto> cctvs = cctvFacadeService.listCctvs(conditions).stream()
 			.map(CctvOverviewDto::from)
-			.collect(Collectors.toList()));
+			.collect(Collectors.toList());
+		return CctvMapResponse.success(cctvs);
 	}
 
 	public CctvMapCountResponse countCctvBetween(CctvMapSearchForm searchForm) {
@@ -49,6 +52,11 @@ public class CctvFacadeServiceV1 {
 		return Optional.of(cctvFacadeService.countCctvs(conditions))
 			.map(CctvMapCountResponse::success)
 			.orElseThrow(() -> new IllegalArgumentException("Fail to get cctv: " + searchForm));
+	}
+
+	public CctvRegisterResponse registerUserCctv(CctvRegistrationForm form, MultipartFile cctvImage, MultipartFile noticeImage) {
+		Cctv cctv = cctvFacadeService.registerUserCctv(form, cctvImage, noticeImage);
+		return CctvRegisterResponse.success(cctv.getId());
 	}
 
 }

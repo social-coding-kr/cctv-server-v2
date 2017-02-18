@@ -1,5 +1,5 @@
-CREATE TABLE `cctv`.`cctvs` (
-  `id` bigint(20) unsigned NOT NULL COMMENT 'pk',
+CREATE TABLE `cctvs` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'pk',
   `name` varchar(200) NOT NULL COMMENT '이름',
   `latitude` double NOT NULL COMMENT '위도',
   `longitude` double NOT NULL COMMENT '경도',

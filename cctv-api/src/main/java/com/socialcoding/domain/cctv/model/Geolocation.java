@@ -22,4 +22,11 @@ public class Geolocation {
     	return Geolocation.of(entity.getLatitude(), entity.getLongitude());
 	}
 
+	public GeolocationEntity toEntity() {
+		GeolocationEntity entity = new GeolocationEntity();
+		entity.setLatitude(latitude);
+		entity.setLongitude(longitude);
+		return entity;
+	}
+
 }
