@@ -40,7 +40,8 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-data-jpa")
     compile("com.querydsl:querydsl-jpa:${querydslVersion}")
     compile("com.querydsl:querydsl-apt:${querydslVersion}:jpa")
-    compile("mysql:mysql-connector-java:6.0.5")
+    compile('mysql:mysql-connector-java:5.1.40')
+//    compile("mysql:mysql-connector-java:6.0.5")
     compile("org.flywaydb:flyway-core:4.0.3")
 
     compile("org.modelmapper:modelmapper:0.7.7")
@@ -52,6 +53,7 @@ dependencies {
 
 	providedCompile("com.fasterxml.jackson.core:jackson-core:${jacksonVersion}")
 	providedCompile("com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}")
+    providedCompile("com.fasterxml.jackson.datatype:jackson-datatype-jdk8:${jacksonVersion}")
 
     testCompile('org.springframework.boot:spring-boot-starter-test')
 }

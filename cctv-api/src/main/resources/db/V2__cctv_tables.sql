@@ -1,3 +1,5 @@
+USE cctv;
+
 CREATE TABLE `cctvs` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'pk',
   `name` varchar(200) NOT NULL COMMENT '이름',

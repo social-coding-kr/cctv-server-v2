@@ -18,10 +18,10 @@ import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
 @Configuration
-@EnableTransactionManagement
-@EnableJpaRepositories
-@EnableJpaAuditing
+@EnableJpaRepositories(basePackageClasses = CctvDomains.class)
 @EntityScan(basePackageClasses = { CctvDomains.class, Jsr310Converters.class })
+@EnableTransactionManagement
+@EnableJpaAuditing
 public class CctvJpaRepositoryConfig {
 
     @Autowired
