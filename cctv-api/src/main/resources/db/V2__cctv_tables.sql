@@ -5,6 +5,7 @@ CREATE TABLE `cctvs` (
   `name` varchar(200) NOT NULL COMMENT '이름',
   `latitude` double NOT NULL COMMENT '위도',
   `longitude` double NOT NULL COMMENT '경도',
+  `clusterId` varchar(200) DEFAULT NULL COMMENT '클러스터링 id',
   `address` varchar(200) DEFAULT NULL COMMENT '주소',
   `region_local_government` varchar(50) DEFAULT NULL COMMENT '광역지방자치단체',
   `basic_local_government` varchar(50) DEFAULT NULL COMMENT '기초지방자치단체',
@@ -15,7 +16,7 @@ CREATE TABLE `cctvs` (
   `last_modified_by` varchar(200) NOT NULL COMMENT '마지막 수정자',
   `last_modified_date` varchar(200) NOT NULL COMMENT '마지막 수정 일시',
   PRIMARY KEY (`id`),
-  UNIQUE KEY `uk_cctvs_name` (`name`)
+  UNIQUE KEY `cctvs_uk01` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `cctv`.`official_cctvs` (
