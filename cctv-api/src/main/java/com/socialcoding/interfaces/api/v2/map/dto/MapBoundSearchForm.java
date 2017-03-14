@@ -1,5 +1,6 @@
 package com.socialcoding.interfaces.api.v2.map.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.socialcoding.domain.map.model.MapBound;
 import lombok.Getter;
 import lombok.Setter;
@@ -9,6 +10,7 @@ import java.math.BigDecimal;
 
 @Getter
 @Setter
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class MapBoundSearchForm {
 
 	@NotNull
