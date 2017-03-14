@@ -22,12 +22,12 @@ public class CctvControllerV1 {
 		this.cctvFacadeService = cctvFacadeServiceV1;
 	}
 
-	@RequestMapping(value = "/cctv/{id}", method = RequestMethod.GET)
+	@GetMapping("/cctv/{id}")
 	public CctvDetailResponse get(@PathVariable Long id) {
 		return cctvFacadeService.getDetail(id);
 	}
 
-	@RequestMapping(value = "/cctv", method = RequestMethod.POST)
+	@PostMapping("/cctv")
 	public CctvRegisterResponse registerPrivateCctv(
 		@Valid CctvRegistrationForm cctvRegistrationForm,
 		@RequestParam("cctvImage") MultipartFile cctvImage,
