@@ -5,8 +5,7 @@ import com.socialcoding.interfaces.api.v2.map.dto.MapCountDto;
 import com.socialcoding.interfaces.api.v2.map.dto.MapDto;
 import com.socialcoding.interfaces.api.v2.map.service.MapFacadeServiceV2;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
@@ -21,12 +20,12 @@ public class MapControllerV2 {
 		this.mapFacadeService = mapFacadeServiceV2;
 	}
 
-	@RequestMapping(value = "/v2/map", method = RequestMethod.GET)
+	@GetMapping("/v2/map")
 	public MapDto map(@Valid MapBoundSearchForm searchForm) {
 		return mapFacadeService.listCctvBetween(searchForm);
 	}
 
-	@RequestMapping(value = "/v2/map/cctvs/counts", method = RequestMethod.GET)
+	@GetMapping("/v2/map/cctvs/counts")
 	public MapCountDto countCctvs(@Valid MapBoundSearchForm searchForm) {
 		return mapFacadeService.countCctvBetween(searchForm);
 	}
