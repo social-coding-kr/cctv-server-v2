@@ -2,6 +2,7 @@ package com.socialcoding.domain.cctv.entity;
 
 import com.socialcoding.domain.base.entity.AbstractAuditingEntity;
 import com.socialcoding.domain.cctv.model.CctvType;
+import com.socialcoding.domain.common.entity.GeolocationEntity;
 import lombok.Getter;
 import lombok.Setter;
 

@@ -1,7 +1,7 @@
 package com.socialcoding.domain.map.entity;
 
 import com.socialcoding.domain.base.entity.AbstractAuditingEntity;
-import com.socialcoding.domain.cctv.entity.GeolocationEntity;
+import com.socialcoding.domain.common.entity.GeolocationEntity;
 import lombok.Getter;
 import lombok.Setter;
 

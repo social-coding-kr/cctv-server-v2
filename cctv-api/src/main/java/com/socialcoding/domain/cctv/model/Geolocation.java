@@ -1,6 +1,6 @@
 package com.socialcoding.domain.cctv.model;
 
-import com.socialcoding.domain.cctv.entity.GeolocationEntity;
+import com.socialcoding.domain.common.entity.GeolocationEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;

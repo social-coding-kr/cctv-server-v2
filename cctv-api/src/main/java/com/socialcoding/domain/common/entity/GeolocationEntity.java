@@ -1,4 +1,4 @@
-package com.socialcoding.domain.cctv.entity;
+package com.socialcoding.domain.common.entity;
 
 import lombok.*;
 
