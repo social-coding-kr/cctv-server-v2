@@ -8,10 +8,12 @@ import com.socialcoding.domain.common.service.CsvService;
 import com.socialcoding.domain.map.model.MapCluster;
 import com.socialcoding.domain.map.model.MapClusterInsertForm;
 import com.socialcoding.domain.map.service.MapClusterFacadeService;
-import com.socialcoding.interfaces.api.v2.map.dto.*;
+import com.socialcoding.interfaces.api.v2.map.dto.MapBoundSearchForm;
+import com.socialcoding.interfaces.api.v2.map.dto.MapClusterRegisterFileForm;
+import com.socialcoding.interfaces.api.v2.map.dto.MapClusterRegisterForm;
+import com.socialcoding.interfaces.api.v2.map.dto.MapClusteredCctvDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.nio.file.Paths;
@@ -61,7 +63,6 @@ public class MapClusterFacadeServiceV2 {
 		insertForms.forEach(mapClusterFacadeService::insert);
 	}
 
-	@Transactional
 	public List<MapClusteredCctvDto> getClusteredCctvs(MapBoundSearchForm searchForm) {
 		Map<String, MapCluster> mapClusters = mapClusterFacadeService.listMapClusters().stream() //FIXME 지금 데이터가 적어서 전부 가져오는데 사실 그럴 필요는 없음
 			.collect(Collectors.toMap(MapCluster::getClusterId, mapCluster -> mapCluster));
