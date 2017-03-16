@@ -4,8 +4,10 @@ import com.socialcoding.domain.cctv.model.Geolocation;
 import com.socialcoding.domain.common.service.CsvService;
 import com.socialcoding.domain.map.model.MapClusterInsertForm;
 import com.socialcoding.domain.map.service.MapClusterFacadeService;
+import com.socialcoding.interfaces.api.v2.map.dto.MapBoundSearchForm;
 import com.socialcoding.interfaces.api.v2.map.dto.MapClusterRegisterFileForm;
 import com.socialcoding.interfaces.api.v2.map.dto.MapClusterRegisterForm;
+import com.socialcoding.interfaces.api.v2.map.dto.MapClusteredCctvDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -50,6 +52,10 @@ public class MapClusterFacadeServiceV2 {
 		});
 
 		insertForms.forEach(mapClusterFacadeService::insert);
+	}
+
+	public List<MapClusteredCctvDto> getClusteredCctvs(MapBoundSearchForm searchForm) {
+		return null;
 	}
 
 }
