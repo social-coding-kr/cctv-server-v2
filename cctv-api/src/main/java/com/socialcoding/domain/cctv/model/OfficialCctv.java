@@ -20,6 +20,7 @@ public class OfficialCctv extends Cctv {
 		OfficialCctv model = new OfficialCctv();
 		model.setId(entity.getId());
 		model.setName(entity.getName());
+		model.setClusterId(entity.getClusterId());
 		model.setLocation(Geolocation.fromEntity(entity.getLocation()));
 		model.setAddress(Address.fromEntity(entity.getAddress()));
 		model.setType(entity.getType());

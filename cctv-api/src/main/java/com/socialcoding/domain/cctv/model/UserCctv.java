@@ -22,6 +22,7 @@ public class UserCctv extends Cctv {
 		UserCctv model = new UserCctv();
 		model.setId(entity.getId());
 		model.setName(entity.getName());
+		model.setClusterId(entity.getClusterId());
 		model.setLocation(Geolocation.fromEntity(entity.getLocation()));
 		model.setAddress(Address.fromEntity(entity.getAddress()));
 		model.setType(entity.getType());

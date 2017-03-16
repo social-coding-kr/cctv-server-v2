@@ -14,6 +14,8 @@ public abstract class Cctv {
 
 	private String name;
 
+	private String clusterId;
+
 	private Geolocation location;
 
 	private Address address;
