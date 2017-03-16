@@ -1,4 +1,4 @@
-package com.socialcoding.interfaces.api.v2.map.dto;
+package com.socialcoding.interfaces.api.internal.map.dto;
 
 import lombok.Getter;
 import lombok.Setter;

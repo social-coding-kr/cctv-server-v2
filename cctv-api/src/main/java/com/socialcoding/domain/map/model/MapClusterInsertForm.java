@@ -2,7 +2,7 @@ package com.socialcoding.domain.map.model;
 
 import com.socialcoding.domain.cctv.model.Geolocation;
 import com.socialcoding.domain.map.entity.MapClusterEntity;
-import com.socialcoding.interfaces.api.v2.map.dto.MapClusterRegisterForm;
+import com.socialcoding.interfaces.api.internal.map.dto.MapClusterRegisterForm;
 import lombok.Getter;
 import lombok.Setter;
 
