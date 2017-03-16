@@ -20,12 +20,12 @@ public class MapControllerV2 {
 		this.mapFacadeService = mapFacadeServiceV2;
 	}
 
-	@GetMapping("/v2/map")
+	@GetMapping("/api/v2/map")
 	public MapDto map(@Valid MapBoundSearchForm searchForm) {
 		return mapFacadeService.listCctvBetween(searchForm);
 	}
 
-	@GetMapping("/v2/map/cctvs/counts")
+	@GetMapping("/api/v2/map/cctvs/counts")
 	public MapCountDto countCctvs(@Valid MapBoundSearchForm searchForm) {
 		return mapFacadeService.countCctvBetween(searchForm);
 	}

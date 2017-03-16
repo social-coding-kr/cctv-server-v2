@@ -20,7 +20,9 @@ public class MapClusterEntity extends AbstractAuditingEntity {
 	@Column(name = "clusterId", unique = true)
 	private String clusterId;
 
-	private String displayName;
+	private String clusterName;
+
+	private String description;
 
 	@Embedded
 	@AttributeOverrides({

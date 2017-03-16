@@ -1,7 +1,9 @@
 package com.socialcoding.domain.base.entity;
 
 import org.springframework.data.domain.AuditorAware;
+import org.springframework.stereotype.Component;
 
+@Component
 public class AuditorInjector implements AuditorAware<String> {
 
 	@Override

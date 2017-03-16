@@ -15,7 +15,7 @@ public class CctvControllerV2 {
 		this.cctvFacadeService = cctvFacadeServiceV2;
 	}
 
-	@GetMapping("/v2/cctv/{name}")
+	@GetMapping("/api/v2/cctv/{name}")
 	public CctvDto get(@PathVariable String name) {
 		return cctvFacadeService.getCctv(name);
 	}

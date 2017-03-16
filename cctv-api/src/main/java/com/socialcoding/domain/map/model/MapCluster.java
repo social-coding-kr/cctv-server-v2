@@ -14,7 +14,9 @@ public class MapCluster {
 
 	private String clusterId;
 
-	private String displayName;
+	private String clusterName;
+
+	private String description;
 
 	private Geolocation displayLocation;
 
@@ -22,7 +24,7 @@ public class MapCluster {
 	public static MapCluster fromEntity(MapClusterEntity entity) {
 		MapCluster model = new MapCluster();
 		model.setClusterId(entity.getClusterId());
-		model.setDisplayName(entity.getDisplayName());
+		model.setClusterName(entity.getClusterName());
 		model.setDisplayLocation(Geolocation.fromEntity(entity.getDisplayLocation()));
 		return model;
 	}

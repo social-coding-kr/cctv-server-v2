@@ -53,6 +53,7 @@ dependencies {
 
 	providedCompile("com.fasterxml.jackson.core:jackson-core:${jacksonVersion}")
 	providedCompile("com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}")
+    providedCompile group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: '2.8.6'
     providedCompile("com.fasterxml.jackson.datatype:jackson-datatype-jdk8:${jacksonVersion}")
 
     testCompile('org.springframework.boot:spring-boot-starter-test')
