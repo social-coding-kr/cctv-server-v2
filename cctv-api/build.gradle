@@ -49,6 +49,8 @@ dependencies {
 //	compile('org.apache.commons:commons-lang3:3.5')
 //	compile('commons-collections:commons-collections:3.2.2')
 
+    compile('com.opencsv:opencsv:3.9')
+
     compile("io.projectreactor:reactor-core:${reactorVersion}")
 
 	providedCompile("com.fasterxml.jackson.core:jackson-core:${jacksonVersion}")
