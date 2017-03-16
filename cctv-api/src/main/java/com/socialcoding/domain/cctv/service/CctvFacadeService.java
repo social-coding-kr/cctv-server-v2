@@ -2,9 +2,7 @@ package com.socialcoding.domain.cctv.service;
 
 import com.socialcoding.domain.cctv.entity.CctvEntity;
 import com.socialcoding.domain.cctv.entity.UserCctvEntity;
-import com.socialcoding.domain.cctv.model.Cctv;
-import com.socialcoding.domain.cctv.model.CctvSearchConditions;
-import com.socialcoding.domain.cctv.model.Geolocation;
+import com.socialcoding.domain.cctv.model.*;
 import com.socialcoding.domain.map.model.CctvMap;
 import com.socialcoding.interfaces.api.v1.cctv.dto.request.CctvRegistrationForm;
 import lombok.extern.slf4j.Slf4j;
@@ -71,6 +69,12 @@ public class CctvFacadeService {
 		return cctvQueryService.count(conditions.toPredicate());
 	}
 
+	public void insert(CctvInsertForm insertForm) {
+		CctvEntity entity = insertForm.toEntity();
+		cctvCommandService.insert(entity);
+	}
+
+	//FIXME 위의 insert method랑 함께 고치기
 	public Cctv registerUserCctv(CctvRegistrationForm form, MultipartFile cctvImage, MultipartFile noticeImage) {
 		UserCctvEntity cctv = new UserCctvEntity();
 		Geolocation location = Geolocation.of(form.getLatitude(), form.getLongitude());
@@ -86,4 +90,5 @@ public class CctvFacadeService {
 		CctvEntity saved = cctvCommandService.insert(cctv);
 		return Cctv.fromEntity(saved);
 	}
+
 }
