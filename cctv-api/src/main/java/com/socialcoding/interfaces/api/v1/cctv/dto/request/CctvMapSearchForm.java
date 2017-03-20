@@ -9,6 +9,7 @@ import lombok.ToString;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
+@Deprecated
 @Getter
 @Setter
 @ToString

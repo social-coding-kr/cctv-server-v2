@@ -10,6 +10,7 @@ import lombok.Setter;
 import java.util.Collections;
 import java.util.List;
 
+@Deprecated
 @Getter
 @Setter(AccessLevel.PRIVATE)
 @NoArgsConstructor(access = AccessLevel.PRIVATE)

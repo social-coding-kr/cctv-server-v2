@@ -9,6 +9,7 @@ import lombok.Setter;
 
 import java.math.BigDecimal;
 
+@Deprecated
 @Getter
 @Setter(AccessLevel.PRIVATE)
 @NoArgsConstructor(access = AccessLevel.PRIVATE)

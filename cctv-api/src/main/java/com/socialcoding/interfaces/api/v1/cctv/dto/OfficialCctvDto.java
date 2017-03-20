@@ -5,6 +5,7 @@ import com.socialcoding.domain.cctv.model.OfficialCctv;
 import lombok.Getter;
 import lombok.Setter;
 
+@Deprecated
 @Getter
 @Setter
 public class OfficialCctvDto extends CctvDto {

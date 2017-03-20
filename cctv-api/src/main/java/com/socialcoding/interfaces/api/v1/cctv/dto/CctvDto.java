@@ -7,6 +7,7 @@ import com.socialcoding.domain.cctv.model.UserCctv;
 import lombok.Getter;
 import lombok.Setter;
 
+@Deprecated
 @Getter
 @Setter
 public class CctvDto {

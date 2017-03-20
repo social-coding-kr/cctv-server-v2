@@ -7,6 +7,7 @@ import lombok.Setter;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
+@Deprecated
 @Getter
 @Setter
 @JsonIgnoreProperties(ignoreUnknown = true)
