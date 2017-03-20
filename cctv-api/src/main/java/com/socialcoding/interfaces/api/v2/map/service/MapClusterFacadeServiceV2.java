@@ -1,6 +1,6 @@
 package com.socialcoding.interfaces.api.v2.map.service;
 
-import com.socialcoding.domain.cctv.model.CctvClusterConditions;
+import com.socialcoding.domain.cctv.form.CctvClusterConditions;
 import com.socialcoding.domain.cctv.service.CctvFacadeService;
 import com.socialcoding.domain.map.model.ClusteredCctv;
 import com.socialcoding.domain.map.model.MapCluster;

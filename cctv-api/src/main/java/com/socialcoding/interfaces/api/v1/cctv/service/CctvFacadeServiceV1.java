@@ -1,7 +1,7 @@
 package com.socialcoding.interfaces.api.v1.cctv.service;
 
 import com.socialcoding.domain.cctv.model.Cctv;
-import com.socialcoding.domain.cctv.model.CctvSearchConditions;
+import com.socialcoding.domain.cctv.form.CctvSearchConditions;
 import com.socialcoding.domain.cctv.service.CctvFacadeService;
 import com.socialcoding.interfaces.api.v1.cctv.dto.CctvDto;
 import com.socialcoding.interfaces.api.v1.cctv.dto.CctvOverviewDto;

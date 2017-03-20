@@ -2,7 +2,7 @@ package com.socialcoding.interfaces.api.internal.cctv.service;
 
 import com.socialcoding.domain.cctv.model.Address;
 import com.socialcoding.domain.cctv.model.Geolocation;
-import com.socialcoding.domain.cctv.model.OfficialCctvInsertForm;
+import com.socialcoding.domain.cctv.form.OfficialCctvInsertForm;
 import com.socialcoding.domain.cctv.service.CctvFacadeService;
 import com.socialcoding.domain.common.service.CsvService;
 import com.socialcoding.domain.map.model.MapCluster;

@@ -1,4 +1,4 @@
-package com.socialcoding.domain.map.model;
+package com.socialcoding.domain.map.form;
 
 import com.socialcoding.domain.cctv.model.Geolocation;
 import com.socialcoding.domain.map.entity.MapClusterEntity;

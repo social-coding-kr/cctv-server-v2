@@ -2,7 +2,7 @@ package com.socialcoding.interfaces.api.internal.map.service;
 
 import com.socialcoding.domain.cctv.model.Geolocation;
 import com.socialcoding.domain.common.service.CsvService;
-import com.socialcoding.domain.map.model.MapClusterInsertForm;
+import com.socialcoding.domain.map.form.MapClusterInsertForm;
 import com.socialcoding.domain.map.service.MapClusterFacadeService;
 import com.socialcoding.interfaces.api.internal.map.dto.MapClusterRegisterFileForm;
 import com.socialcoding.interfaces.api.internal.map.dto.MapClusterRegisterForm;

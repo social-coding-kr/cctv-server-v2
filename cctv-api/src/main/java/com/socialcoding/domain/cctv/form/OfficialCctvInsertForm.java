@@ -1,6 +1,7 @@
-package com.socialcoding.domain.cctv.model;
+package com.socialcoding.domain.cctv.form;
 
 import com.socialcoding.domain.cctv.entity.OfficialCctvEntity;
+import com.socialcoding.domain.cctv.model.CctvType;
 import lombok.Getter;
 import lombok.Setter;
 

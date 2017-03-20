@@ -1,9 +1,10 @@
-package com.socialcoding.domain.cctv.model;
+package com.socialcoding.domain.cctv.form;
 
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.Predicate;
 import com.socialcoding.domain.base.search.SearchConditions;
 import com.socialcoding.domain.cctv.entity.QCctvEntity;
+import com.socialcoding.domain.cctv.model.CctvType;
 import com.socialcoding.domain.map.model.MapBound;
 import lombok.Getter;
 import lombok.Setter;
@@ -12,21 +13,24 @@ import java.util.Optional;
 
 @Getter
 @Setter
-public class CctvClusterConditions implements SearchConditions {
+public class CctvSearchConditions implements SearchConditions {
 
 	private MapBound mapBound;
 
+	private CctvType type;
+
 	@Override
 	public Predicate toPredicate() {
+//		lower => searchForm.getSouth() <- latitude, searchForm.getWest() <- longitude);
+//		upper => searchForm.getNorth() <- latitude, searchForm.getEast() <- longitude);
 		QCctvEntity qCctvEntity = QCctvEntity.cctvEntity;
 		BooleanBuilder booleanBuilder = new BooleanBuilder();
-
-		booleanBuilder.and(qCctvEntity.clusterId.isNotNull());
-
 		Optional.ofNullable(mapBound)
 			.ifPresent(bound -> booleanBuilder
-				.and(qCctvEntity.location.latitude.between(bound.getSouth(), bound.getNorth()))
-				.and(qCctvEntity.location.longitude.between(bound.getWest(), bound.getEast())));
+					.and(qCctvEntity.location.latitude.between(bound.getSouth(), bound.getNorth()))
+					.and(qCctvEntity.location.longitude.between(bound.getWest(), bound.getEast())));
+		Optional.ofNullable(type)
+			.ifPresent(qCctvEntity.type::eq);
 		return booleanBuilder;
 	}
 
