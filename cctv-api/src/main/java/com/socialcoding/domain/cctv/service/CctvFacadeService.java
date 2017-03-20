@@ -4,6 +4,7 @@ import com.socialcoding.domain.cctv.entity.CctvEntity;
 import com.socialcoding.domain.cctv.entity.UserCctvEntity;
 import com.socialcoding.domain.cctv.model.*;
 import com.socialcoding.domain.map.model.CctvMap;
+import com.socialcoding.domain.map.model.ClusteredCctv;
 import com.socialcoding.interfaces.api.v1.cctv.dto.request.CctvRegistrationForm;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
@@ -59,7 +59,7 @@ public class CctvFacadeService {
 			.collect(Collectors.toList());
 	}
 
-	public Map<String, Long> getClusteredCctvs(CctvClusterConditions conditions) {
+	public List<ClusteredCctv> getClusteredCctvs(CctvClusterConditions conditions) {
 		return cctvQueryService.groupByClusterId(conditions.toPredicate());
 	}
 

@@ -2,6 +2,7 @@ package com.socialcoding.interfaces.api.v2.map.service;
 
 import com.socialcoding.domain.cctv.model.CctvClusterConditions;
 import com.socialcoding.domain.cctv.service.CctvFacadeService;
+import com.socialcoding.domain.map.model.ClusteredCctv;
 import com.socialcoding.domain.map.model.MapCluster;
 import com.socialcoding.domain.map.service.MapClusterFacadeService;
 import com.socialcoding.interfaces.api.v2.map.dto.MapBoundSearchForm;
@@ -32,7 +33,8 @@ public class MapClusterFacadeServiceV2 {
 
 		CctvClusterConditions conditions = new CctvClusterConditions();
 		conditions.setMapBound(searchForm.toMapBound());
-		Map<String, Long> cctvCountByClusterId = cctvFacadeService.getClusteredCctvs(conditions);
+		Map<String, Long> cctvCountByClusterId = cctvFacadeService.getClusteredCctvs(conditions).stream()
+			.collect(Collectors.toMap(ClusteredCctv::getClusterId, ClusteredCctv::getCount));
 
 		return cctvCountByClusterId.entrySet().stream()
 			.map(entry -> MapClusteredCctvDto.from(mapClusters.get(entry.getKey()), entry.getValue()))

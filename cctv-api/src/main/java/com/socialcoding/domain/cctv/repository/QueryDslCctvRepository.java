@@ -1,13 +1,12 @@
 package com.socialcoding.domain.cctv.repository;
 
 import com.querydsl.core.types.Predicate;
+import com.socialcoding.domain.map.model.ClusteredCctv;
 
-import java.util.Map;
+import java.util.List;
 
 public interface QueryDslCctvRepository {
 
-//	List<ClusteredCctv> groupByClusterId(Predicate predicate);
-
-	Map<String, Long> groupByClusterId(Predicate predicate);
+	List<ClusteredCctv> groupByClusterId(Predicate predicate);
 
 }

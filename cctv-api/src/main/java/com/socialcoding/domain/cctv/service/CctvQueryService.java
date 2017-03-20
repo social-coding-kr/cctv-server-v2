@@ -4,11 +4,12 @@ import com.google.common.collect.Lists;
 import com.querydsl.core.types.Predicate;
 import com.socialcoding.domain.cctv.entity.CctvEntity;
 import com.socialcoding.domain.cctv.repository.CctvRepository;
+import com.socialcoding.domain.map.model.ClusteredCctv;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
-import java.util.Map;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -37,8 +38,7 @@ public class CctvQueryService {
 		return cctvRepository.count(predicate);
 	}
 
-	public Map<String, Long> groupByClusterId(Predicate predicate) {
+	public List<ClusteredCctv> groupByClusterId(Predicate predicate) {
 		return cctvRepository.groupByClusterId(predicate);
 	}
-
 }
