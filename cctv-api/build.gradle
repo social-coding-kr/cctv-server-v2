@@ -60,3 +60,7 @@ dependencies {
 
     testCompile('org.springframework.boot:spring-boot-starter-test')
 }
+
+bootRun {
+	systemProperties System.properties
+}
