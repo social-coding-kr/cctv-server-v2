@@ -18,7 +18,7 @@ import java.util.Map;
 @Setter
 @Entity
 @Table(name = "official_cctvs")
-@DiscriminatorValue(CctvType.Names.OFFICIAL)
+@DiscriminatorValue(CctvType.Values.OFFICIAL)
 public class OfficialCctvEntity extends CctvEntity {
 
 	@Column(name = "data_source")

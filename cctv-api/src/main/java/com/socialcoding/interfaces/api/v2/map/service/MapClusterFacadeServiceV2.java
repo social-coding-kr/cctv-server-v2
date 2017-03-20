@@ -1,5 +1,6 @@
 package com.socialcoding.interfaces.api.v2.map.service;
 
+import com.socialcoding.domain.base.util.StringUtils;
 import com.socialcoding.domain.cctv.model.Cctv;
 import com.socialcoding.domain.cctv.model.CctvSearchConditions;
 import com.socialcoding.domain.cctv.service.CctvFacadeService;
@@ -34,6 +35,7 @@ public class MapClusterFacadeServiceV2 {
 		CctvSearchConditions conditions = new CctvSearchConditions();
 		conditions.setMapBound(searchForm.toMapBound());
 		Map<String, Long> cctvCountByClusterId = cctvFacadeService.listCctvs(conditions).stream()
+			.filter(cctv -> StringUtils.isNotBlank(cctv.getClusterId()))
 			.collect(Collectors.groupingBy(Cctv::getClusterId, Collectors.counting()));
 
 		return cctvCountByClusterId.entrySet().stream()

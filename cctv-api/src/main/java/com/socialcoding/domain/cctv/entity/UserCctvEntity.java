@@ -18,7 +18,7 @@ import java.util.Map;
 @Setter
 @Entity
 @Table(name = "user_cctvs")
-@DiscriminatorValue(CctvType.Names.USER)
+@DiscriminatorValue(CctvType.Values.USER)
 public class UserCctvEntity extends CctvEntity {
 
 	@Column(name = "cctv_image")

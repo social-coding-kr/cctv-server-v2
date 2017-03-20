@@ -17,14 +17,18 @@ public class CctvOverviewDto {
 	private long cctvId;
 	private BigDecimal latitude;
 	private BigDecimal longitude;
-	private CctvType source;
+	private String source;
 
 	public static CctvOverviewDto from(Cctv cctv) {
 		CctvOverviewDto dto = new CctvOverviewDto();
 		dto.setCctvId(cctv.getId());
 		dto.setLatitude(cctv.getLocation().getLatitude());
 		dto.setLongitude(cctv.getLocation().getLongitude());
-		dto.setSource(cctv.getType());
+		if (CctvType.OFFICIAL == cctv.getType()) {
+			dto.setSource(CctvType.Values.LEGACY_OFFICIAL);
+		} else if (CctvType.USER == cctv.getType()) {
+			dto.setSource(CctvType.Values.LEGACY_USER);
+		}
 		return dto;
 	}
 
