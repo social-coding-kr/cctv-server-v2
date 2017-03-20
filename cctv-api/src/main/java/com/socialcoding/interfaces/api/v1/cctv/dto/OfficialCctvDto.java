@@ -1,5 +1,6 @@
 package com.socialcoding.interfaces.api.v1.cctv.dto;
 
+import com.socialcoding.domain.cctv.model.CctvType;
 import com.socialcoding.domain.cctv.model.OfficialCctv;
 import lombok.Getter;
 import lombok.Setter;
@@ -28,7 +29,7 @@ public class OfficialCctvDto extends CctvDto {
 		OfficialCctvDto dto = new OfficialCctvDto();
 		dto.setCctvId(cctv.getId());
 		dto.setPurpose(cctv.getExtraProperties().get("purpose"));
-		dto.setSource(cctv.getType());
+		dto.setSource(CctvType.Values.LEGACY_OFFICIAL);
 		dto.setAddress(cctv.getAddress().getAddress());
 		dto.setBorough(cctv.getAddress().getDistrict());
 		dto.setDong(cctv.getExtraProperties().get("range"));

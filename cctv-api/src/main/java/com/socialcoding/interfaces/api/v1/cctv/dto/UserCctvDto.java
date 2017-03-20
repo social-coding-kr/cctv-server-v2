@@ -1,5 +1,6 @@
 package com.socialcoding.interfaces.api.v1.cctv.dto;
 
+import com.socialcoding.domain.cctv.model.CctvType;
 import com.socialcoding.domain.cctv.model.UserCctv;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,7 +17,7 @@ public class UserCctvDto extends CctvDto {
 		UserCctvDto dto = new UserCctvDto();
 		dto.setCctvId(cctv.getId());
 		dto.setPurpose(cctv.getExtraProperties().get("purpose"));
-		dto.setSource(cctv.getType());
+		dto.setSource(CctvType.Values.LEGACY_USER);
 		dto.setCctvImage(cctv.getCctvImage());
 		dto.setNoticeImage(cctv.getNoticeImage());
 		return dto;

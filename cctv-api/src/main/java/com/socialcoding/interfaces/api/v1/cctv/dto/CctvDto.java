@@ -13,7 +13,7 @@ public class CctvDto {
 
 	private long cctvId;
 	private String purpose;
-	private CctvType source; //TODO source -> type
+	private String source; //TODO source -> type
 
 	public static CctvDto from(Cctv cctv) {
 		if (CctvType.OFFICIAL == cctv.getType()) {
