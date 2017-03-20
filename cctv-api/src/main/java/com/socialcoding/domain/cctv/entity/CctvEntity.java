@@ -17,7 +17,7 @@ import javax.persistence.*;
 public abstract class CctvEntity extends AbstractAuditingEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
 	@Column(name = "name", unique = true, nullable = false)

@@ -4,21 +4,27 @@ import com.socialcoding.domain.cctv.entity.OfficialCctvEntity;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @Getter
 @Setter
 public class OfficialCctvInsertForm extends CctvInsertForm {
 
+	private String dataSource;
 
-//	public static OfficialCctvInsertForm formRegisterForm(OfficialCctvRegisterFileForm registerForm) {
-//		OfficialCctvInsertForm insertForm = new OfficialCctvInsertForm();
-//
-//		return insertForm;
-//	}
+	private Map<String, String> extraProperties = new HashMap<>();
 
 	@Override
 	public OfficialCctvEntity toEntity() {
 		OfficialCctvEntity entity = new OfficialCctvEntity();
-		//FIXME 구현
+		entity.setName(this.getName());
+		entity.setClusterId(this.getClusterId());
+		entity.setLocation(this.getLocation().toEntity());
+		entity.setAddress(this.getAddress().toEntity());
+		entity.setDataSource(this.getDataSource());
+		entity.setExtraProperties(this.getExtraProperties());
+		entity.setType(CctvType.OFFICIAL);
 		return entity;
 	}
 

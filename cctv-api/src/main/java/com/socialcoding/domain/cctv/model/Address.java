@@ -5,21 +5,30 @@ import lombok.*;
 
 @Getter
 @ToString
-@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@AllArgsConstructor
 public class Address {
 
 	private String address;
 
-	private String regionLocalGovernment; // 광역지방자치단체
+	private String province; // 특별시, 도
 
-	private String basicLocalGovernment; // 기초지방자치단체
+	private String district; // 시/군/구
 
-	private String nonSelfGovernment; // 비자치구역
+	private String village; // 동
 
 
 	public static Address fromEntity(AddressEntity entity) {
-		return new Address(entity.getAddress(), entity.getRegionLocalGovernment(),
-			entity.getBasicLocalGovernment(), entity.getNonSelfGovernment());
+		return new Address(entity.getAddress(), entity.getProvince(),
+			entity.getDistrict(), entity.getVillage());
+	}
+
+	public AddressEntity toEntity() {
+		AddressEntity entity = new AddressEntity();
+		entity.setAddress(this.address);
+		entity.setProvince(this.province);
+		entity.setDistrict(this.district);
+		entity.setVillage(this.village);
+		return entity;
 	}
 
 }

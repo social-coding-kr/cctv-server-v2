@@ -8,6 +8,15 @@ import lombok.Setter;
 @Setter
 public abstract class CctvInsertForm {
 
+	private String name;
+
+	private String clusterId;
+
+	private Geolocation location;
+
+	private Address address;
+
+
 	public abstract CctvEntity toEntity();
 
 }

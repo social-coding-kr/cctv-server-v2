@@ -30,7 +30,7 @@ public class OfficialCctvDto extends CctvDto {
 		dto.setPurpose(cctv.getExtraProperties().get("purpose"));
 		dto.setSource(cctv.getType());
 		dto.setAddress(cctv.getAddress().getAddress());
-		dto.setBorough(cctv.getAddress().getRegionLocalGovernment());
+		dto.setBorough(cctv.getAddress().getDistrict());
 		dto.setDong(cctv.getExtraProperties().get("range"));
 		dto.setDepartment(cctv.getExtraProperties().get("department"));
 		dto.setPixel(cctv.getExtraProperties().get("form"));
