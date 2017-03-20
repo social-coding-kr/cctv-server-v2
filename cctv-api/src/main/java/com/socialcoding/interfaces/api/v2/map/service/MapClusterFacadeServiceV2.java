@@ -1,8 +1,6 @@
 package com.socialcoding.interfaces.api.v2.map.service;
 
-import com.socialcoding.domain.base.util.StringUtils;
-import com.socialcoding.domain.cctv.model.Cctv;
-import com.socialcoding.domain.cctv.model.CctvSearchConditions;
+import com.socialcoding.domain.cctv.model.CctvClusterConditions;
 import com.socialcoding.domain.cctv.service.CctvFacadeService;
 import com.socialcoding.domain.map.model.MapCluster;
 import com.socialcoding.domain.map.service.MapClusterFacadeService;
@@ -32,11 +30,9 @@ public class MapClusterFacadeServiceV2 {
 		Map<String, MapCluster> mapClusters = mapClusterFacadeService.listMapClusters().stream() //FIXME 지금 데이터가 적어서 전부 가져오는데 사실 그럴 필요는 없음
 			.collect(Collectors.toMap(MapCluster::getClusterId, mapCluster -> mapCluster));
 
-		CctvSearchConditions conditions = new CctvSearchConditions();
+		CctvClusterConditions conditions = new CctvClusterConditions();
 		conditions.setMapBound(searchForm.toMapBound());
-		Map<String, Long> cctvCountByClusterId = cctvFacadeService.listCctvs(conditions).stream()
-			.filter(cctv -> StringUtils.isNotBlank(cctv.getClusterId()))
-			.collect(Collectors.groupingBy(Cctv::getClusterId, Collectors.counting()));
+		Map<String, Long> cctvCountByClusterId = cctvFacadeService.getClusteredCctvs(conditions);
 
 		return cctvCountByClusterId.entrySet().stream()
 			.map(entry -> MapClusteredCctvDto.from(mapClusters.get(entry.getKey()), entry.getValue()))

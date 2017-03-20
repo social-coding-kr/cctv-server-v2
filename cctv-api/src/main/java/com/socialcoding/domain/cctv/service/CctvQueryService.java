@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -35,4 +36,9 @@ public class CctvQueryService {
 	public long count(Predicate predicate) {
 		return cctvRepository.count(predicate);
 	}
+
+	public Map<String, Long> groupByClusterId(Predicate predicate) {
+		return cctvRepository.groupByClusterId(predicate);
+	}
+
 }
