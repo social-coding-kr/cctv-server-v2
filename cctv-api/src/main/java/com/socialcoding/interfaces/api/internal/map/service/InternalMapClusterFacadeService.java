@@ -8,12 +8,12 @@ import com.socialcoding.interfaces.api.internal.map.dto.MapClusterRegisterFileFo
 import com.socialcoding.interfaces.api.internal.map.dto.MapClusterRegisterForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Flux;
 
 import java.math.BigDecimal;
 import java.nio.file.Paths;
 import java.text.DecimalFormat;
 import java.text.ParseException;
-import java.util.List;
 
 @Service
 public class InternalMapClusterFacadeService {
@@ -29,11 +29,12 @@ public class InternalMapClusterFacadeService {
 	}
 
 	public void register(MapClusterRegisterForm registerForm) {
-		mapClusterFacadeService.insert(MapClusterInsertForm.fromRegisterForm(registerForm));
+		mapClusterFacadeService.insert(MapClusterInsertForm.fromRegisterForm(registerForm))
+			.block();
 	}
 
 	public void register(MapClusterRegisterFileForm registerForm) {
-		List<MapClusterInsertForm> insertForms = csvService.read(Paths.get(registerForm.getFilePath()).toFile(), line -> {
+		Flux.defer(() -> csvService.read(Paths.get(registerForm.getFilePath()).toFile(), line -> {
 			MapClusterInsertForm insertForm = new MapClusterInsertForm();
 			insertForm.setClusterName(line[0]);
 			insertForm.setClusterId(line[1]);
@@ -47,9 +48,9 @@ public class InternalMapClusterFacadeService {
 				throw new RuntimeException(e);
 			}
 			return insertForm;
-		});
-
-		insertForms.forEach(mapClusterFacadeService::insert);
+		}))
+			.doOnNext(mapClusterFacadeService::insert)
+			.blockLast();
 	}
 
 }

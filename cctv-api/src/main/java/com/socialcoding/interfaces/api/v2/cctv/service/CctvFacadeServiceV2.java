@@ -5,8 +5,6 @@ import com.socialcoding.interfaces.api.v1.cctv.dto.CctvDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 @Service
 public class CctvFacadeServiceV2 {
 
@@ -18,9 +16,10 @@ public class CctvFacadeServiceV2 {
 	}
 
 	public CctvDto getCctv(String name) {
-		return Optional.ofNullable(cctvFacadeService.getCctv(name))
+		return cctvFacadeService.getCctv(name)
 			.map(CctvDto::from)
-			.orElseThrow(() -> new IllegalArgumentException("Fail to get cctv: " + name));
+			.block();
+//			.orElseThrow(() -> new IllegalArgumentException("Fail to get cctv: " + name));
 	}
 
 }

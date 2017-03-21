@@ -3,15 +3,11 @@ package com.socialcoding.interfaces.api.v2.map.service;
 import com.socialcoding.domain.cctv.form.CctvSearchConditions;
 import com.socialcoding.domain.cctv.service.CctvFacadeService;
 import com.socialcoding.interfaces.api.v2.map.dto.MapBoundSearchForm;
-import com.socialcoding.interfaces.api.v2.map.dto.MapCountDto;
 import com.socialcoding.interfaces.api.v2.map.dto.MapCctvDto;
+import com.socialcoding.interfaces.api.v2.map.dto.MapCountDto;
 import com.socialcoding.interfaces.api.v2.map.dto.MapDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class MapFacadeServiceV2 {
@@ -26,17 +22,19 @@ public class MapFacadeServiceV2 {
 	public MapDto listCctvBetween(MapBoundSearchForm searchForm) {
 		CctvSearchConditions conditions = new CctvSearchConditions();
 		conditions.setMapBound(searchForm.toMapBound());
-		List<MapCctvDto> cctvs = cctvFacadeService.listCctvs(conditions).stream()
+		return cctvFacadeService.listCctvs(conditions)
 			.map(MapCctvDto::from)
-			.collect(Collectors.toList());
-		return MapDto.with(cctvs);
+			.collectList()
+			.map(MapDto::with)
+			.block();
 	}
 
 	public MapCountDto countCctvBetween(MapBoundSearchForm searchForm) {
 		CctvSearchConditions conditions = new CctvSearchConditions();
 		conditions.setMapBound(searchForm.toMapBound());
-		return Optional.of(cctvFacadeService.countCctvs(conditions))
+		return cctvFacadeService.countCctvs(conditions)
 			.map(MapCountDto::with)
-			.orElseThrow(() -> new IllegalArgumentException("Fail to get cctv: " + searchForm));
+			.block();
+//			.orElseThrow(() -> new IllegalArgumentException("Fail to get cctv: " + searchForm));
 	}
 }

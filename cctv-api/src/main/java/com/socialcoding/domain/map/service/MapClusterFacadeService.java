@@ -1,12 +1,11 @@
 package com.socialcoding.domain.map.service;
 
-import com.socialcoding.domain.map.model.MapCluster;
 import com.socialcoding.domain.map.form.MapClusterInsertForm;
+import com.socialcoding.domain.map.model.MapCluster;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.stream.Collectors;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 @Service
 public class MapClusterFacadeService {
@@ -17,14 +16,14 @@ public class MapClusterFacadeService {
 	@Autowired
 	private MapClusterQueryService mapClusterQueryService;
 
-	public void insert(MapClusterInsertForm insertForm) {
-		mapClusterCommandService.insert(insertForm);
+	public Mono<MapCluster> insert(MapClusterInsertForm insertForm) {
+		return mapClusterCommandService.insert(insertForm)
+			.map(MapCluster::fromEntity);
 	}
 
-	public List<MapCluster> listMapClusters() {
-		return mapClusterQueryService.findAll().stream()
-			.map(MapCluster::fromEntity)
-			.collect(Collectors.toList());
+	public Flux<MapCluster> listMapClusters() {
+		return mapClusterQueryService.findAll()
+			.map(MapCluster::fromEntity);
 	}
 
 }

@@ -1,16 +1,13 @@
 package com.socialcoding.domain.cctv.service;
 
-import com.google.common.collect.Lists;
 import com.querydsl.core.types.Predicate;
 import com.socialcoding.domain.cctv.entity.CctvEntity;
 import com.socialcoding.domain.cctv.repository.CctvRepository;
 import com.socialcoding.domain.map.model.ClusteredCctv;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.Collection;
-import java.util.List;
-import java.util.Optional;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 @Service
 public class CctvQueryService {
@@ -22,23 +19,24 @@ public class CctvQueryService {
 		this.cctvRepository = cctvRepository;
 	}
 
-	public Optional<CctvEntity> findById(Long id) {
-		return cctvRepository.findOneById(id);
+	public Mono<CctvEntity> findById(Long id) {
+		return Mono.fromCallable(() -> cctvRepository.findOne(id));
 	}
 
-	public Optional<CctvEntity> findByName(String name) {
-		return cctvRepository.findOneByName(name);
+	public Mono<CctvEntity> findByName(String name) {
+		return Mono.fromCallable(() -> cctvRepository.findOneByName(name));
 	}
 
-	public Collection<CctvEntity> findAll(Predicate predicate) {
-		return Lists.newArrayList(cctvRepository.findAll(predicate));
+	public Flux<CctvEntity> findAll(Predicate predicate) {
+		return Flux.defer(() -> Flux.fromIterable(cctvRepository.findAll(predicate)));
 	}
 
-	public long count(Predicate predicate) {
-		return cctvRepository.count(predicate);
+	public Mono<Long> count(Predicate predicate) {
+		return Mono.fromCallable(() -> cctvRepository.count(predicate));
 	}
 
-	public List<ClusteredCctv> groupByClusterId(Predicate predicate) {
-		return cctvRepository.groupByClusterId(predicate);
+	public Flux<ClusteredCctv> groupByClusterId(Predicate predicate) {
+		return Flux.defer(() -> Flux.fromIterable(cctvRepository.groupByClusterId(predicate)));
 	}
+
 }

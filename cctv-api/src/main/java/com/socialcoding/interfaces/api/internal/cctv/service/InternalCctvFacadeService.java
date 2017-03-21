@@ -11,6 +11,7 @@ import com.socialcoding.interfaces.api.internal.cctv.dto.OfficialCctvRegisterFil
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Flux;
 
 import java.math.BigDecimal;
 import java.nio.file.Paths;
@@ -41,7 +42,7 @@ public class InternalCctvFacadeService {
 
 	public void register(OfficialCctvRegisterFileForm registerForm) {
 
-		Map<Long, Map<String, String>> official = csvService.read(Paths.get(registerForm.getOfficialCctvFilePath()).toFile(), line -> {
+		Map<Long, Map<String, String>> official = Flux.defer(() -> csvService.read(Paths.get(registerForm.getOfficialCctvFilePath()).toFile(), line -> {
 			Map<String, String> data = new HashMap<>();
 			data.put("cctvId", filterNull(line[0]));
 			data.put("cctvName", filterNull(line[1]));
@@ -54,11 +55,10 @@ public class InternalCctvFacadeService {
 			data.put("form", filterNull(line[8]));
 			data.put("installedAt", Optional.ofNullable(filterNull(line[9])).filter(d -> !"\n".equalsIgnoreCase(d)).orElse(null));
 			return data;
-		}).stream()
-			.collect(Collectors.toMap(map ->
-				Long.parseLong(map.get("cctvId")), map -> map));
+		})).collectMap(map -> Long.parseLong(map.get("cctvId")), map -> map)
+			.block();
 
-		Map<Long, Map<String, String>> common = csvService.read(Paths.get(registerForm.getCommonCctvFilePath()).toFile(), line -> {
+		Map<Long, Map<String, String>> common = Flux.defer(() -> csvService.read(Paths.get(registerForm.getCommonCctvFilePath()).toFile(), line -> {
 			Map<String, String> data = new HashMap<>();
 			data.put("cctvId", line[0]);
 			data.put("latitude", line[1]);
@@ -66,14 +66,15 @@ public class InternalCctvFacadeService {
 			data.put("purpose", filterNull(line[3]));
 			data.put("source", line[4]);
 			return data;
-		}).stream()
-			.collect(Collectors.toMap(map -> Long.parseLong(map.get("cctvId")), map -> map));
+		})).collectMap(map -> Long.parseLong(map.get("cctvId")), map -> map)
+			.block();
 
 
 		log.debug("count: {}, {}", official.size(), common.size());
 
-		Map<String, String> clusters = mapClusterFacadeService.listMapClusters().stream()
-			.collect(Collectors.toMap(MapCluster::getClusterName, MapCluster::getClusterId));
+		Map<String, String> clusters = mapClusterFacadeService.listMapClusters()
+			.collectMap(MapCluster::getClusterName, MapCluster::getClusterId)
+			.block();
 
 		mergeById(official, common, clusters).forEach(cctvFacadeService::insert);
 	}
