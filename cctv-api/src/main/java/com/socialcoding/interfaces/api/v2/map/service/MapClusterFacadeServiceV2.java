@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class MapClusterFacadeServiceV2 {
@@ -30,16 +31,17 @@ public class MapClusterFacadeServiceV2 {
 		MapClusterSearchConditions mapClusterSearchConditions = new MapClusterSearchConditions();
 		mapClusterSearchConditions.setMapBound(searchForm.toMapBound());
 		return mapClusterFacadeService.listMapClusters(mapClusterSearchConditions)
-			.flatMap(this::getClusteredCctvs)
+			.collectMap(MapCluster::getClusterId)
+			.flatMap(this::getClusteredCctvsFromMapClusters)
 			.collectList()
 			.block();
 	}
 
-	private Flux<MapClusteredCctvDto> getClusteredCctvs(MapCluster mapCluster) {
+	private Flux<MapClusteredCctvDto> getClusteredCctvsFromMapClusters(Map<String, MapCluster> mapClusters) {
 		CctvClusterConditions cctvClusterConditions = new CctvClusterConditions();
-		cctvClusterConditions.setClusterId(mapCluster.getClusterId());
+		cctvClusterConditions.setClusterIds(mapClusters.keySet());
 		return cctvFacadeService.getClusteredCctvs(cctvClusterConditions)
-			.map(clusteredCctv -> MapClusteredCctvDto.from(mapCluster, clusteredCctv.getCount()));
+			.map(clusteredCctv -> MapClusteredCctvDto.from(mapClusters.get(clusteredCctv.getClusterId()), clusteredCctv.getCount()));
 	}
 
 }
