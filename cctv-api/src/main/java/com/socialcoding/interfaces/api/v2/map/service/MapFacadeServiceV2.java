@@ -24,7 +24,7 @@ public class MapFacadeServiceV2 {
 	public MapDto listCctvBetween(MapBoundSearchForm searchForm) {
 		CctvSearchConditions conditions = new CctvSearchConditions();
 		conditions.setMapBound(searchForm.toMapBound());
-		return cctvFacadeService.listCctvs(conditions)
+		return cctvFacadeService.listCctv(conditions)
 			.map(MapCctvDto::from)
 			.collectList()
 			.map(MapDto::with)

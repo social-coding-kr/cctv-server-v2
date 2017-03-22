@@ -41,7 +41,7 @@ public class CctvFacadeServiceV1 {
 		CctvSearchConditions condition = new CctvSearchConditions();
 		condition.setMapBound(searchForm.toMapBound());
 
-		return cctvFacadeService.listCctvs(condition)
+		return cctvFacadeService.listCctv(condition)
 			.map(CctvOverviewDto::from)
 			.collectList()
 			.map(CctvMapResponse::success)

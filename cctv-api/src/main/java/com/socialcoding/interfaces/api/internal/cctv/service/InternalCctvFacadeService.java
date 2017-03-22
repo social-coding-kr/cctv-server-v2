@@ -76,7 +76,9 @@ public class InternalCctvFacadeService {
 			.collectMap(MapCluster::getClusterName, MapCluster::getClusterId)
 			.block();
 
-		mergeById(official, common, clusters).forEach(cctvFacadeService::insert);
+		Flux.fromIterable(mergeById(official, common, clusters))
+			.flatMap(cctvFacadeService::insert)
+			.blockLast();
 	}
 
 	private String filterNull(String data) {

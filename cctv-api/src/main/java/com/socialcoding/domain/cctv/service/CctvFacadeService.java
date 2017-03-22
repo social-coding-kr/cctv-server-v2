@@ -60,19 +60,19 @@ public class CctvFacadeService {
 			.map(Cctv::fromEntity);
 	}
 
-	public Flux<Cctv> listCctvs(CctvSearchConditions conditions) {
+	public Flux<Cctv> listCctv(CctvSearchConditions conditions) {
 		return cctvQueryService.findAll(conditions.toPredicate())
 			.map(Cctv::fromEntity);
 	}
 
-	public Flux<ClusteredCctv> getClusteredCctvs(CctvClusterConditions conditions) {
+	public Flux<ClusteredCctv> listClusteredCctv(CctvClusterConditions conditions) {
 		return cctvQueryService.groupByClusterId(conditions.toPredicate());
 	}
 
 	public Mono<CctvMap> getCctvMap(CctvSearchConditions conditions) {
 		Objects.requireNonNull(conditions.getMapBound());
 
-		return listCctvs(conditions)
+		return listCctv(conditions)
 			.collectList()
 			.map(cctvs -> CctvMap.of(cctvs, conditions.getType(), conditions.getMapBound()));
 	}
@@ -81,10 +81,10 @@ public class CctvFacadeService {
 		return cctvQueryService.count(conditions.toPredicate());
 	}
 
-	public void insert(CctvInsertForm insertForm) {
+	public Mono<Cctv> insert(CctvInsertForm insertForm) {
 		CctvEntity entity = insertForm.toEntity();
-		cctvCommandService.insert(entity)
-			.block();
+		return cctvCommandService.insert(entity)
+			.map(Cctv::fromEntity);
 	}
 
 	//FIXME 위의 insert method랑 함께 고치기

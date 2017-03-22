@@ -27,7 +27,7 @@ public class MapClusterFacadeServiceV2 {
 		this.cctvFacadeService = cctvFacadeService;
 	}
 
-	public List<MapClusteredCctvDto> getClusteredCctvs(MapBoundSearchForm searchForm) {
+	public List<MapClusteredCctvDto> listClusteredCctv(MapBoundSearchForm searchForm) {
 		MapClusterSearchConditions mapClusterSearchConditions = new MapClusterSearchConditions();
 		mapClusterSearchConditions.setMapBound(searchForm.toMapBound());
 		return mapClusterFacadeService.listMapClusters(mapClusterSearchConditions)
@@ -40,7 +40,7 @@ public class MapClusterFacadeServiceV2 {
 	private Flux<MapClusteredCctvDto> getClusteredCctvsFromMapClusters(Map<String, MapCluster> mapClusters) {
 		CctvClusterConditions cctvClusterConditions = new CctvClusterConditions();
 		cctvClusterConditions.setClusterIds(mapClusters.keySet());
-		return cctvFacadeService.getClusteredCctvs(cctvClusterConditions)
+		return cctvFacadeService.listClusteredCctv(cctvClusterConditions)
 			.map(clusteredCctv -> MapClusteredCctvDto.from(mapClusters.get(clusteredCctv.getClusterId()), clusteredCctv.getCount()));
 	}
 

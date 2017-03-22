@@ -22,7 +22,7 @@ public class MapClusterControllerV2 {
 
 	@GetMapping("/api/v2/maps/clusters")
 	public List<MapClusteredCctvDto> getClusteredCctvs(@Valid MapBoundSearchForm searchForm) {
-		return mapClusterFacadeServiceV2.getClusteredCctvs(searchForm);
+		return mapClusterFacadeServiceV2.listClusteredCctv(searchForm);
 	}
 
 }
