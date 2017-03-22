@@ -1,7 +1,7 @@
 package com.socialcoding.interfaces.api.v2.cctv.service;
 
 import com.socialcoding.domain.cctv.service.CctvFacadeService;
-import com.socialcoding.interfaces.api.v1.cctv.dto.CctvDto;
+import com.socialcoding.interfaces.api.v2.cctv.dto.CctvDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import reactor.core.Exceptions;

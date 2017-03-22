@@ -1,6 +1,6 @@
 package com.socialcoding.interfaces.api.v2.cctv.controller;
 
-import com.socialcoding.interfaces.api.v1.cctv.dto.CctvDto;
+import com.socialcoding.interfaces.api.v2.cctv.dto.CctvDto;
 import com.socialcoding.interfaces.api.v2.cctv.service.CctvFacadeServiceV2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
