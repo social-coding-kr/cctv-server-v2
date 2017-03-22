@@ -1,5 +1,6 @@
 package com.socialcoding.domain.map.service;
 
+import com.socialcoding.domain.map.entity.MapClusterEntity;
 import com.socialcoding.domain.map.form.MapClusterInsertForm;
 import com.socialcoding.domain.map.model.MapCluster;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,8 @@ public class MapClusterFacadeService {
 	private MapClusterQueryService mapClusterQueryService;
 
 	public Mono<MapCluster> insert(MapClusterInsertForm insertForm) {
-		return mapClusterCommandService.insert(insertForm)
+		MapClusterEntity entity = insertForm.toEntity();
+		return mapClusterCommandService.insert(entity)
 			.map(MapCluster::fromEntity);
 	}
 

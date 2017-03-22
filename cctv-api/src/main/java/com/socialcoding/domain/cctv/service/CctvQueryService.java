@@ -20,11 +20,11 @@ public class CctvQueryService {
 	}
 
 	public Mono<CctvEntity> findById(Long id) {
-		return Mono.fromCallable(() -> cctvRepository.findOne(id));
+		return Mono.defer(() -> Mono.justOrEmpty(cctvRepository.findOne(id)));
 	}
 
 	public Mono<CctvEntity> findByName(String name) {
-		return Mono.fromCallable(() -> cctvRepository.findOneByName(name));
+		return Mono.defer(() -> Mono.justOrEmpty(cctvRepository.findOneByName(name)));
 	}
 
 	public Flux<CctvEntity> findAll(Predicate predicate) {
@@ -32,7 +32,7 @@ public class CctvQueryService {
 	}
 
 	public Mono<Long> count(Predicate predicate) {
-		return Mono.fromCallable(() -> cctvRepository.count(predicate));
+		return Mono.defer(() -> Mono.justOrEmpty(cctvRepository.count(predicate)));
 	}
 
 	public Flux<ClusteredCctv> groupByClusterId(Predicate predicate) {

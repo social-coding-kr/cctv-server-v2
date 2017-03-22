@@ -14,6 +14,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import reactor.core.Exceptions;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -48,12 +49,14 @@ public class CctvFacadeService {
 	public Mono<Cctv> getCctv(Long id) {
 		return cctvQueryService.findById(id)
 			.otherwiseIfEmpty(Mono.error(new IllegalArgumentException("Fail to find cctv: " + id)))
+			.doOnError(Exceptions::propagate)
 			.map(Cctv::fromEntity);
 	}
 
 	public Mono<Cctv> getCctv(String name) {
 		return cctvQueryService.findByName(name)
 			.otherwiseIfEmpty(Mono.error(new IllegalArgumentException("Fail to find cctv: " + name)))
+			.doOnError(Exceptions::propagate)
 			.map(Cctv::fromEntity);
 	}
 
@@ -80,7 +83,8 @@ public class CctvFacadeService {
 
 	public void insert(CctvInsertForm insertForm) {
 		CctvEntity entity = insertForm.toEntity();
-		cctvCommandService.insert(entity).block();
+		cctvCommandService.insert(entity)
+			.block();
 	}
 
 	//FIXME 위의 insert method랑 함께 고치기

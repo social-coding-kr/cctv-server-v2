@@ -14,6 +14,8 @@ import com.socialcoding.interfaces.api.v1.cctv.dto.response.CctvRegisterResponse
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import reactor.core.Exceptions;
+import reactor.core.publisher.Mono;
 
 @Service
 @Deprecated
@@ -28,10 +30,11 @@ public class CctvFacadeServiceV1 {
 
 	public CctvDetailResponse getDetail(Long id) {
 		return cctvFacadeService.getCctv(id)
+			.otherwiseIfEmpty(Mono.error(new IllegalArgumentException("Fail to get cctv: " + id)))
+			.doOnError(Exceptions::propagate)
 			.map(CctvDto::from)
 			.map(CctvDetailResponse::success)
 			.block();
-//			.orElseThrow(() -> new IllegalArgumentException("Fail to get cctv: " + id));
 	}
 
 	public CctvMapResponse listCctvBetween(CctvMapSearchForm searchForm) {
@@ -50,9 +53,10 @@ public class CctvFacadeServiceV1 {
 		condition.setMapBound(searchForm.toMapBound());
 
 		return cctvFacadeService.countCctvs(condition)
+			.otherwiseIfEmpty(Mono.error(new IllegalArgumentException("Fail to get cctv: " + searchForm)))
+			.doOnError(Exceptions::propagate)
 			.map(CctvMapCountResponse::success)
 			.block();
-//			.orElseThrow(() -> new IllegalArgumentException("Fail to get cctv: " + searchForm));
 	}
 
 	public CctvRegisterResponse registerUserCctv(CctvRegistrationForm form, MultipartFile cctvImage, MultipartFile noticeImage) {

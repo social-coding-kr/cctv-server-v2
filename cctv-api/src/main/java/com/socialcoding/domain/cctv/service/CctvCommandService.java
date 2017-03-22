@@ -17,7 +17,7 @@ public class CctvCommandService {
 	}
 
 	public Mono<CctvEntity> insert(CctvEntity cctv) {
-		return Mono.fromCallable(() -> cctvRepository.save(cctv));
+		return Mono.defer(() -> Mono.just(cctvRepository.save(cctv)));
 	}
 
 }

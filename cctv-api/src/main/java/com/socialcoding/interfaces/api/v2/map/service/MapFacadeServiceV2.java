@@ -8,6 +8,8 @@ import com.socialcoding.interfaces.api.v2.map.dto.MapCountDto;
 import com.socialcoding.interfaces.api.v2.map.dto.MapDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import reactor.core.Exceptions;
+import reactor.core.publisher.Mono;
 
 @Service
 public class MapFacadeServiceV2 {
@@ -33,8 +35,9 @@ public class MapFacadeServiceV2 {
 		CctvSearchConditions conditions = new CctvSearchConditions();
 		conditions.setMapBound(searchForm.toMapBound());
 		return cctvFacadeService.countCctvs(conditions)
+			.otherwiseIfEmpty(Mono.error(new IllegalArgumentException("Fail to get cctv: " + searchForm)))
+			.doOnError(Exceptions::propagate)
 			.map(MapCountDto::with)
 			.block();
-//			.orElseThrow(() -> new IllegalArgumentException("Fail to get cctv: " + searchForm));
 	}
 }
