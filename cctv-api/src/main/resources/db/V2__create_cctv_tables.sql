@@ -17,6 +17,7 @@ CREATE TABLE `cctvs` (
   `last_modified_date` datetime NOT NULL COMMENT '마지막 수정 일시',
   PRIMARY KEY (`id`),
   UNIQUE KEY `cctvs_uk01` (`name`)
+  KEY `cctvs_idx01` (`cluster_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `cctv`.`official_cctvs` (
