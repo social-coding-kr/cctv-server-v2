@@ -19,8 +19,8 @@ public class OAuth2Config {
 
 	@Bean
 	@ConfigurationProperties("facebook")
-	public ClientResources facebookClientResources() {
-		return new ClientResources();
+	public ClientProperties facebookClientResources() {
+		return new ClientProperties();
 	}
 
 }
