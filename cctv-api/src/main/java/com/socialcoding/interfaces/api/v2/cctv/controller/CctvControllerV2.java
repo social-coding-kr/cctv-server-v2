@@ -1,11 +1,11 @@
 package com.socialcoding.interfaces.api.v2.cctv.controller;
 
 import com.socialcoding.interfaces.api.v2.cctv.dto.CctvDto;
+import com.socialcoding.interfaces.api.v2.cctv.dto.UserCctvRegisterForm;
 import com.socialcoding.interfaces.api.v2.cctv.service.CctvFacadeServiceV2;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 public class CctvControllerV2 {
@@ -20,6 +20,11 @@ public class CctvControllerV2 {
 	@GetMapping("/api/v2/cctvs/{name}")
 	public CctvDto get(@PathVariable String name) {
 		return cctvFacadeService.getCctv(name);
+	}
+
+	@PostMapping("/api/v2/cctvs")
+	public void register(@RequestPart UserCctvRegisterForm cctv, @RequestPart MultipartFile cctvImage, @RequestPart MultipartFile noticeImage) {
+		cctvFacadeService.register(cctv, cctvImage, noticeImage);
 	}
 
 }
