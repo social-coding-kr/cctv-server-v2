@@ -15,7 +15,8 @@ public class CctvImageService {
 	@Autowired
 	private FlickrService flickrService;
 
-	public String save(MultipartFile cctvImage) {
+
+	public String save(MultipartFile file) {
 		return null;
 	}
 

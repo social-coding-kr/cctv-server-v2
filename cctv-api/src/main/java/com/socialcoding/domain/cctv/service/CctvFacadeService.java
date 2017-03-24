@@ -3,8 +3,10 @@ package com.socialcoding.domain.cctv.service;
 import com.socialcoding.domain.cctv.entity.CctvEntity;
 import com.socialcoding.domain.cctv.entity.UserCctvEntity;
 import com.socialcoding.domain.cctv.form.CctvClusterConditions;
-import com.socialcoding.domain.cctv.form.CctvInsertForm;
 import com.socialcoding.domain.cctv.form.CctvSearchConditions;
+import com.socialcoding.domain.cctv.form.OfficialCctvInsertForm;
+import com.socialcoding.domain.cctv.form.UserCctvInsertForm;
+import com.socialcoding.domain.cctv.model.Address;
 import com.socialcoding.domain.cctv.model.Cctv;
 import com.socialcoding.domain.cctv.model.Geolocation;
 import com.socialcoding.domain.map.model.CctvMap;
@@ -19,6 +21,7 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.util.Objects;
+import java.util.Optional;
 
 @Slf4j
 @Service
@@ -69,8 +72,26 @@ public class CctvFacadeService {
 		return cctvQueryService.count(conditions.toPredicate());
 	}
 
-	public Mono<Cctv> insert(CctvInsertForm insertForm) {
+	public Mono<Cctv> insert(OfficialCctvInsertForm insertForm) {
 		CctvEntity entity = insertForm.toEntity();
+		return cctvCommandService.insert(entity)
+			.map(Cctv::fromEntity);
+	}
+
+	public Mono<Cctv> insert(UserCctvInsertForm insertForm) {
+		UserCctvEntity entity = insertForm.toEntity();
+
+		Geolocation location = insertForm.getLocation();
+
+		String name = cctvNameService.generateName(location);
+		entity.setName(name);
+
+		Address address = cctvAddressService.getAddress(location);
+		entity.setAddress(address.toEntity());
+
+		Optional.ofNullable(insertForm.getCctvImage()).ifPresent(image -> entity.setCctvImage(cctvImageService.save(image)));
+		Optional.ofNullable(insertForm.getNoticeImage()).ifPresent(image -> entity.setNoticeImage(cctvImageService.save(image)));
+
 		return cctvCommandService.insert(entity)
 			.map(Cctv::fromEntity);
 	}
@@ -94,7 +115,7 @@ public class CctvFacadeService {
 		String name = cctvNameService.generateName(location);
 		cctv.setName(name);
 		cctv.setLocation(location.toEntity());
-		cctv.setAddress(cctvAddressService.getAddress(location));
+//		cctv.setAddress(cctvAddressService.getAddress(location));
 		cctv.setCctvImage(cctvImageService.save(cctvImage));
 		cctv.setNoticeImage(cctvImageService.save(noticeImage));
 

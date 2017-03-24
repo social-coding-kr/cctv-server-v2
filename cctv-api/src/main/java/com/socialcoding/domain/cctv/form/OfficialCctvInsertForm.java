@@ -16,7 +16,6 @@ public class OfficialCctvInsertForm extends CctvInsertForm {
 
 	private Map<String, String> extraProperties = new HashMap<>();
 
-	@Override
 	public OfficialCctvEntity toEntity() {
 		OfficialCctvEntity entity = new OfficialCctvEntity();
 		entity.setName(this.getName());

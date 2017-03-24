@@ -1,6 +1,6 @@
 package com.socialcoding.domain.cctv.service;
 
-import com.socialcoding.domain.cctv.entity.AddressEntity;
+import com.socialcoding.domain.cctv.model.Address;
 import com.socialcoding.domain.cctv.model.Geolocation;
 import com.socialcoding.domain.common.service.AddressService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +16,7 @@ public class CctvAddressService {
 		this.addressService = addressService;
 	}
 
-	public AddressEntity getAddress(Geolocation geolocation) {
+	public Address getAddress(Geolocation geolocation) {
 		return null;
 	}
 
