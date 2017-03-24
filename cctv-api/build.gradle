@@ -51,6 +51,8 @@ dependencies {
 
     compile('com.opencsv:opencsv:3.9')
 
+    compile('com.flickr4java:flickr4java:2.16')
+
     compile("io.projectreactor:reactor-core:${reactorVersion}")
 
 	providedCompile("com.fasterxml.jackson.core:jackson-core:${jacksonVersion}")
