@@ -23,7 +23,10 @@ public class CctvControllerV2 {
 	}
 
 	@PostMapping("/api/v2/cctvs")
-	public void register(@RequestPart UserCctvRegisterForm cctv, @RequestPart MultipartFile cctvImage, @RequestPart MultipartFile noticeImage) {
+	public void register(@RequestPart UserCctvRegisterForm cctv
+		, @RequestPart(required = false) MultipartFile cctvImage
+		, @RequestPart(required = false) MultipartFile noticeImage) {
+
 		cctvFacadeService.register(cctv, cctvImage, noticeImage);
 	}
 
